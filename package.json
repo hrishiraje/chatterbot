@@ -1,0 +1,22 @@
+{
+  "name": "chatterbot",
+  "version": "1.0.0",
+  "description": "Chatterbot by Team Rocket",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamRocketThesis/chatterbot.git"
+  },
+  "author": "Rishi, Arseniy, Sim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamRocketThesis/chatterbot/issues"
+  },
+  "homepage": "https://github.com/TeamRocketThesis/chatterbot#readme",
+  "dependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
