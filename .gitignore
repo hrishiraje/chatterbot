@@ -28,3 +28,10 @@ bower_components/
 public/bundle.js
 public/bundle.js.map
 .env
+
+.DS_Store
+*~
+*.log
+*.js.meta
+node_modules/
+build/
