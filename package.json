@@ -24,9 +24,11 @@
     "babel-jest": "^19.0.0",
     "babel-preset-react-native": "^1.9.1",
     "body-parser": "^1.17.2",
+    "chai": "^3.5.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "jest": "^19.0.2",
+    "mysql": "^2.13.0",
     "nodemon": "^1.11.0",
     "ovrui": "^1.1.0",
     "path": "^0.12.7",
@@ -36,8 +38,10 @@
     "react-test-renderer": "~15.4.1",
     "react-vr": "^1.1.0",
     "react-vr-web": "^1.1.0",
+    "request": "^2.81.0",
     "shelljs": "^0.7.7",
     "three": "^0.80.1",
+    "url": "^0.11.0",
     "xopen": "1.0.0"
   },
   "jest": {
