@@ -22,7 +22,7 @@ describe('server', function() {
     });
   });
 
-  it('should send an object back containing the response from the server', function(done) {
+  xit('should send an object back containing the response from the server', function(done) {
     request('http://127.0.0.1:9000/api/responseGet', function(error, response, body) {
       var parsedBody = JSON.parse(body);
       expect(parsedBody).to.be.an('object');
