@@ -1,13 +1,6 @@
 //object coming from Contextgen giving calContext in string and expected next calContext punctiation
-var contextGen = require('./contextGen');
-responseObj = {
-  greeting: {
-    question: 'Yes you can! What kind of pizza would you like?',
-    statement: 'What kind of pizza would you like?',
-    query: 'Was this a greeting?',
-    next: 'initiate order'
-  }
-};
+const contextGen = require('./contextGen');
+const responseObj = require('./response');
 
 module.exports = (calContext, currentContext, punctuation, cb) => {
 
