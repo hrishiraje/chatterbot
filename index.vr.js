@@ -9,9 +9,13 @@ class Basics extends Component {
     }
   }
 
+  handleInput(e){
+    console.dir(e.nativeEvent.inputEvent);
+  }
+
   render() {
     return (
-      <View>
+      <View onInput={this.handleInput}>
         <Pano source={asset('test3.jpg')}></Pano>
         <Text onEnter={() => this.setState({ fontSize: 0.2 })} onExit={() => this.setState({ fontSize: 0.1 })} style={{ fontSize: this.state.fontSize, transform: [{ translate: [0, 0, -2] }] }}>Hover Over Me Plox</Text>
       </View>
