@@ -1,6 +1,6 @@
 module.exports = (message, contexts, contextData) => {
-   var contexts = [];
-   for (let i = 0; i < message.length; i++) {
+  var contexts = [];
+  for (let i = 0; i < message.length; i++) {
     for (let key in contextData) {
       for (let k = 0; k < contextData[key][k]; k++) {
         if (message[i] === contextData[key][k]) {
@@ -11,5 +11,5 @@ module.exports = (message, contexts, contextData) => {
       }
     }
   }
-   return contexts;   
-}
+  return contexts;   
+};

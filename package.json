@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/TeamRocketThesis/chatterbot#readme",
   "dependencies": {
+    "axios": "^0.16.1",
     "babel-jest": "^19.0.0",
     "babel-preset-react-native": "^1.9.1",
     "body-parser": "^1.17.2",
