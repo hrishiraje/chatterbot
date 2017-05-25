@@ -24,6 +24,15 @@ module.exports = {
             .send(data);
         }
       });
+    },
+    startup: function(req, res) {
+      var message = {
+        text: 'Hi there, my name is chatbot! Can I help you order a pizza?',
+        nextContext: 'newOrder'  
+      };
+      res
+        .status(200)
+        .send(message);
     }
   }
 };

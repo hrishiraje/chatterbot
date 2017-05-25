@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box } from 'react-vr';
+import axios from 'axios';
 
 class Basics extends Component {
   constructor(props) {
@@ -8,6 +9,15 @@ class Basics extends Component {
       fontSize: 0.1,
       keyboardText: '>>'
     }
+  }
+
+  componentDidMount() {
+    me = this;
+    axios.get('/api/startup').then(function(response) {
+      me.setState({
+        keyboardText: response.data.text
+      });
+    });
   }
 
   handleInput(e){

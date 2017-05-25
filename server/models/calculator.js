@@ -4,6 +4,6 @@ module.exports = (contextArr) => {
   contextArr.forEach((contextname)=>{
     sum += contextValue[contextname];
   });
-  calculation = Math.round(sum/contextArr.length);
+  calculation = Math.round(sum / contextArr.length);
   return calculation;
-}
+};
