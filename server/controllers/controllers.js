@@ -6,8 +6,9 @@ module.exports = {
     responseGet: function(req, res) {
       var queryParameter = url.parse(req.url, true).query;
       console.log('query parameter received --->', queryParameter);
-
-      models.robot.responseGet(queryParemeter, function(err, data) {
+      var message = queryParameter.message.split();
+      console.log('message after split', message);
+      models.robot.responseGet(message, function(err, data) {
         if (err) {
           res
             .status(500)
