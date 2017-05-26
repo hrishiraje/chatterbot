@@ -15,6 +15,9 @@ module.exports = {
           }
         });
       });
-    }
+    },
+    placeOrder: function(order, cb) {
+      // place API logic for dominoes order here
+    } 
   }
 };

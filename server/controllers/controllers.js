@@ -33,6 +33,23 @@ module.exports = {
       res
         .status(200)
         .send(message);
+    },
+    placeOrder: function(req, res) {
+      var order = req.body;
+      console.log('This is the order', order);
+
+      models.robot.placeOrder(order, function(err, data) {
+        if (err) {
+          res
+            .status(404)
+            .send(err);
+        } else {
+          res
+            .status(200)
+            .send({output: 'we ordered it fam'});
+        }
+      });
+
     }
   }
 };
