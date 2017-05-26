@@ -8,7 +8,7 @@ class Basics extends Component {
     this.state = {
       fontSize: 0.1,
       robotText: '',
-      keyboardText: '>>',
+      keyboardText: '',
       messageText: '',
       context: '',
     }
@@ -25,6 +25,7 @@ class Basics extends Component {
   }
 
   handleInput(e){
+    var me = this;
     if(e.nativeEvent.inputEvent.eventType === 'keyup')
     if (e.nativeEvent.inputEvent.key === 'Backspace'){
       this.setState({
@@ -35,12 +36,9 @@ class Basics extends Component {
         messageText: JSON.parse(JSON.stringify(this.state.keyboardText)),
         keyboardText: '',
       }, ()=>{
-          console.log(this.state.messageText);
-          var modifiedMessage = this.state.messageText.replace(/\s/gi, '+');
-          console.log(this.state.messageText);
+          var modifiedMessage = this.state.messageText.replace(/\>\s/gi, '+');
           var urlMessage = '?message='+modifiedMessage+'&context='+this.state.context;
-          console.log(`Here: /api/startup${urlMessage}`, urlMessage);
-          axios.get(`/api/startup${urlMessage}`).then(function(response) {
+          axios.get(`/api/response${urlMessage}`).then(function(response) {
             me.setState({
             robotText: response.data.output,
             context: response.data.nextContext,
@@ -48,7 +46,6 @@ class Basics extends Component {
           });
       });
     } else {
-      console.log(e.nativeEvent.inputEvent.key);
       if(e.nativeEvent.inputEvent.key !== 'Shift')
       this.setState({
         keyboardText: this.state.keyboardText+= e.nativeEvent.inputEvent.key
@@ -80,7 +77,10 @@ class Basics extends Component {
   }
 }
 /*
-
+So whoever reviews this, I have three Text components. Each component refers to one of three things: robotText, keyboardText (input panel), 
+and messageText(to confirm that the inputted user text was captured after pressing enter). Then, under the handleEvent for "Enter", I made a
+this.setState call where I stored the inputted message, cleared the blank slate, and sent the inputted message via an axios.get. Then, within the axios 
+call I again used this.setState to set the new robot chat text and grab the new context to pass along to the server with the next client message
 */
 AppRegistry.registerComponent('VRBasics', () => Basics);
 
