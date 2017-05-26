@@ -8,7 +8,8 @@
     "bundle": "node node_modules/react-vr/scripts/bundle.js",
     "open": "node -e \"require('xopen')('http://localhost:8081/vr/')\"",
     "devtools": "react-devtools",
-    "test": "jest"
+    "test": "jest",
+    "stest": "mocha"
   },
   "repository": {
     "type": "git",
@@ -26,9 +27,11 @@
     "babel-preset-react-native": "^1.9.1",
     "body-parser": "^1.17.2",
     "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
     "jest": "^19.0.2",
+    "mocha": "^3.4.2",
     "mysql": "^2.13.0",
     "nodemon": "^1.11.0",
     "ovrui": "^1.1.0",
