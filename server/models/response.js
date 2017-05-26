@@ -3,12 +3,12 @@ module.exports = {
     question: 'Yes you can! What kind of pizza would you like?',
     statement: 'What kind of pizza would you like?',
     query: 'Was this a greeting?',
-    next: 'neworder'
+    next: 'newOrder'
   },
-  neworder: {
+  newOrder: {
     question: 'Yes you can! What kind of pizza would you like?',
-    statement: 'What kind of pizza would you like?',
-    query: 'Was this a greeting?',
+    statement: 'Great! Let\'s figure out what kind of pizza. A good pizza begins with a great crust! Do you know what kind of crust you\'d like',
+    query: 'I\'m not sure I understand. Want to start a new order for pizza?',
     next: 'pizzaType'
   },
   pizzaType: {

@@ -1,3 +1,5 @@
+var contextValues = require('./contextValues');
+
 module.exports = (contextArr) => {
   var sum = 0;
   var calculation = 0;
@@ -5,5 +7,11 @@ module.exports = (contextArr) => {
     sum += contextValue[contextname];
   });
   calculation = Math.round(sum / contextArr.length);
-  return calculation;
+  var returnContext;
+  for (let key in contextValues) {
+    if (contextValues[key] === calculation) {
+      returnContext = key;
+    }
+  }
+  return returnContext;
 };

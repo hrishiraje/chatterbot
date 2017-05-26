@@ -1,4 +1,6 @@
-module.exports = (message, contexts, contextData) => {
+var contextData = require('./contextValues');
+
+module.exports = (message) => {
   var contexts = [];
   for (let i = 0; i < message.length; i++) {
     for (let key in contextData) {
@@ -11,5 +13,6 @@ module.exports = (message, contexts, contextData) => {
       }
     }
   }
+  console.log(contexts);
   return contexts;   
 };
