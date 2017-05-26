@@ -10,6 +10,7 @@ class Basics extends Component {
       robotText: '',
       keyboardText: '>>',
       messageText: '',
+      context: '',
     }
   }
 
@@ -17,7 +18,8 @@ class Basics extends Component {
     var me = this;
     axios.get('/api/startup').then(function(response) {
       me.setState({
-        robotText: response.data.text
+        robotText: response.data.text,
+        context: response.data.nextContext,
       });
     });
   }
@@ -33,6 +35,14 @@ class Basics extends Component {
         messageText: this.state.keyboardText,
         keyboardText: '',
       })
+      var modifiedMessage = this.state.messageText.replace(/\s/gi, '+');
+      var urlMessage = '?message='+hi+I+would+like+to+order+a+pizza+'&context='+this.state.context
+      axiosget(`/api/startup${urlMessage}`).then(function(response) {
+      me.setState({
+        robotText: response.data.text,
+        context: response.data.nextContext,
+      });
+    });
     } else {
       console.log(e.nativeEvent.inputEvent.key);
       if(e.nativeEvent.inputEvent.key !== 'Shift')
@@ -54,10 +64,11 @@ class Basics extends Component {
         transform: [{translate: [0, 0, -2]}],
       }}>
         {/*<Text onEnter={() => this.setState({ fontSize: 0.2 })} onExit={() => this.setState({ fontSize: 0.1 })} style={{ fontSize: this.state.fontSize, transform: [{ translate: [0, 0, -2] }] }}>{this.state.keyboardText}</Text>*/}
+        
+        <Text style={{ color: 'red', transform: [{ translate: [0, 0, 0] }] }}>{this.state.robotText}</Text>
         <View style={{ margin: 0.5, height: 0.10, backgroundColor: 'darkslategrey'}}>
-        <Text style={{transform: [{ translate: [0, 0, 0] }] }}>{this.state.robotText}</Text>
-        <Text style={{transform: [{ translate: [0, 0, -2] }] }}>{this.state.keyboardText}</Text>
-        <Text style={{transform: [{ translate: [0, 0, -2] }] }}>{this.state.messageText}</Text>
+        <Text style={{ color: 'red', transform: [{ translate: [0, 0, -2] }] }}>{this.state.keyboardText}</Text>
+        <Text style={{ color: 'red', transform: [{ translate: [1, 0, -2] }] }}>{this.state.messageText}</Text>
         </View>
         </View>
       </View>
