@@ -40,7 +40,7 @@ module.exports = (calContext, currentContext, punctuation, cb) => {
     cb(obj);
   } else if (calContext !== currentContext && calContext !== 'negation') {
     var obj = {
-      output: 'I\'m sorry. I didn\'t understand that. ' + responseObj[currentContext].statement,
+      output: 'I\'m sorry. I didn\'t understand that. ' + responseObj[currentContext].query,
       currentContext: currentContext,
       nextContext: responseObj[currentContext].next
     };
