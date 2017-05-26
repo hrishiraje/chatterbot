@@ -3,7 +3,6 @@ var expect = require('chai').expect;
 var chaiHttp = require('chai-http');
 var chai = require('chai');
 var should = chai.should();
-
 chai.use(chaiHttp);
 
 describe('server', function() {
