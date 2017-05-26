@@ -32,17 +32,21 @@ class Basics extends Component {
       });
     }else if (e.nativeEvent.inputEvent.key === 'Enter'){
       this.setState({
-        messageText: this.state.keyboardText,
+        messageText: JSON.parse(JSON.stringify(this.state.keyboardText)),
         keyboardText: '',
-      })
-      var modifiedMessage = this.state.messageText.replace(/\s/gi, '+');
-      var urlMessage = '?message='+hi+I+would+like+to+order+a+pizza+'&context='+this.state.context
-      axiosget(`/api/startup${urlMessage}`).then(function(response) {
-      me.setState({
-        robotText: response.data.text,
-        context: response.data.nextContext,
+      }, ()=>{
+          console.log(this.state.messageText);
+          var modifiedMessage = this.state.messageText.replace(/\s/gi, '+');
+          console.log(this.state.messageText);
+          var urlMessage = '?message='+modifiedMessage+'&context='+this.state.context;
+          console.log(`Here: /api/startup${urlMessage}`, urlMessage);
+          axios.get(`/api/startup${urlMessage}`).then(function(response) {
+            me.setState({
+            robotText: response.data.output,
+            context: response.data.nextContext,
+                      });
+          });
       });
-    });
     } else {
       console.log(e.nativeEvent.inputEvent.key);
       if(e.nativeEvent.inputEvent.key !== 'Shift')
