@@ -59,13 +59,13 @@ var responseObj = {
   },
   newOrder: {
     question: 'Yes you can! What kind of pizza would you like?',
-    statement: 'Great! Let\'s figure out what kind of pizza. A good pizza begins with a great crust! Do you know what kind of crust you\'d like',
+    statement: 'Great! Let\'s figure out what kind of pizza. A good pizza begins with a great crust! Do you know what size of pizza you\'d like',
     query: 'I\'m not sure I understand. Want to start a new order for pizza?',
     next: 'pizzaType'
   },
   pizzaType: {
     question: 'Of course! So what kind of toppings would you like?',
-    statement: 'Thats my favorite crust too! How did you know? Now pick the toppings you like. Here are some options',
+    statement: 'Sweet, now that we have the size, pick the toppings you like. Here are some options',
     query: 'I\'m not sure I understand. A few of the crusts that I have are: thin and deep dish. Let me know which one you would like.',
     next: 'topping'
   },
