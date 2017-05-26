@@ -36,23 +36,30 @@ module.exports = function(message, context, cb) {
     cb(contexts[0], context, calculatedPunctuation);
 
   } else if (contexts.length > 1) {
-    var sum = 0;
-    var calculation = 0;
+    // var sum = 0;
+    // var calculation = 0;
 
-    contexts.forEach((contextname) => {
-      sum += contextValue[contextname];
-    });
+    // contexts.forEach((contextname) => {
+    //   sum += contextValue[contextname];
+    // });
 
-    calculation = Math.round(sum / contexts.length);
-    var returnContext;
+    // calculation = Math.round(sum / contexts.length);
+    // var returnContext;
 
-    for (let key in contextValue) {
-      if (contextValue[key] === calculation) {
-        returnContext = key;
-      }
-    }
-    if (calculatedContext === 'assertion') {
-      calculatedContext = returnContext;
+    // for (let key in contextValue) {
+    //   if (contextValue[key] === calculation) {
+    //     returnContext = key;
+    //   }
+    // }
+
+    // if (calculatedContext === 'assertion') {
+    //   calculatedContext = returnContext;
+    // }
+    var calculatedContext = '';
+    if (contexts.includes(context)) {
+      calculatedContext = context;
+    } else {
+      calculatedContext = null;
     }
     console.log('What we are sending in fam', calculatedContext, context);
     cb(calculatedContext, context, 'statement');
