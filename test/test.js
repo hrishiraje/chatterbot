@@ -4,6 +4,7 @@ var chaiHttp = require('chai-http');
 var chai = require('chai');
 var should = chai.should();
 var punctuation = require('../server/models/contextGen').punctuation;
+var contextGen = require('../server/models/contextGen').contextGen;
 
 chai.use(chaiHttp);
 
@@ -73,5 +74,33 @@ describe('punctuation', function(){
     var result = punctuation(['large', 'pizza']);
     expect(result).to.equal('statement');
   });
+});
+
+describe('calculate context', function(){
+  it('should return no contexts when none of the words match', function(){
+    contextGen(['my', 'name'], 'toppings', function(calculatedContext, context, punctuation){
+      expect(calculatedContext).to.equal(null);
+    });
+  });
+
+  it('should return a single context when one word matches', function(){
+    contextGen(['order', 'name'], 'toppings', function(calculatedContext, context, punctuation){
+      expect(calculatedContext).to.equal('newOrder');
+    });
+  });
+
+  it('should return the correct expected context when there are multiple potential contexts', function(){
+    contextGen(['order', 'pepperoni'], 'newOrder', function(calculatedContext, context, punctuation){
+      expect(calculatedContext).to.equal('newOrder');
+    });
+  });
+
+      it('should return assertion correctly', function(){
+    contextGen(['absolutely'], 'newOrder', function(calculatedContext, context, punctuation){
+      expect(calculatedContext).to.equal('newOrder');
+    });
+  });
+
+
 });
 
