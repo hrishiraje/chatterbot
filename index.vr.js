@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box } from 'react-vr';
 import axios from 'axios';
 
+import BouncingText from './components/BouncingText';
+
 class Basics extends Component {
   constructor(props) {
     super(props);
@@ -66,11 +68,12 @@ class Basics extends Component {
       }}>
         {/*<Text onEnter={() => this.setState({ fontSize: 0.2 })} onExit={() => this.setState({ fontSize: 0.1 })} style={{ fontSize: this.state.fontSize, transform: [{ translate: [0, 0, -2] }] }}>{this.state.keyboardText}</Text>*/}
         
-        <Text style={{ color: 'red', transform: [{ translate: [0, 0, 0] }] }}>{this.state.robotText}</Text>
-        <View style={{ margin: 0.5, height: 0.10, backgroundColor: 'darkslategrey'}}>
-        <Text style={{ color: 'red', transform: [{ translate: [0, 0, -2] }] }}>{this.state.keyboardText}</Text>
-        <Text style={{ color: 'red', transform: [{ translate: [1, 0, -2] }] }}>{this.state.messageText}</Text>
-        </View>
+            <Text style={{ color: 'red', transform: [{ translate: [0, 0, 0] }] }}>{this.state.robotText}</Text>
+            <View style={{ margin: 0.5, height: 0.10, backgroundColor: 'darkslategrey'}}>
+            <Text style={{ color: 'red', transform: [{ translate: [0, 0, -2] }] }}>{this.state.keyboardText}</Text>
+            <Text style={{ color: 'red', transform: [{ translate: [1, 0, -2] }] }}>{this.state.messageText}</Text>
+            <BouncingText />
+          </View>
         </View>
       </View>
     );

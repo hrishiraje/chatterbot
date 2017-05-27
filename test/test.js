@@ -154,5 +154,13 @@ describe('response generator', function () {
     });
   });
 
+  //null
+
+  //assertion
+
+  //punct statement
+
+  //punct question
+
 });
 
