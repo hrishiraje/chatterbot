@@ -1,39 +1,12 @@
-var request = require('request');
-var expect = require('chai').expect;
-var chaiHttp = require('chai-http');
-var chai = require('chai');
-var should = chai.should();
-var punctuation = require('../server/models/contextGen').punctuation;
-var contextGen = require('../server/models/contextGen').contextGen;
-var responseGen = require('../server/models/responseGen');
-
-var responseObj = {
-  greeting: {
-    question: 'Yes you can! What kind of pizza would you like?',
-    statement: 'What kind of pizza would you like?',
-    query: 'Was this a greeting?',
-    next: 'newOrder'
-  },
-  newOrder: {
-    question: 'Yes you can! What kind of pizza would you like?',
-    statement: 'Great! Let\'s figure out what kind of pizza. A good pizza begins with a great crust! Do you know what size of pizza you\'d like',
-    query: 'I\'m not sure I understand. Want to start a new order for pizza?',
-    next: 'pizzaType'
-  },
-  pizzaType: {
-    question: 'Of course! So what kind of toppings would you like?',
-    statement: 'Sweet, now that we have the size, pick the toppings you like. Here are some options',
-    query: 'I\'m not sure I understand. A few of the crusts that I have are: thin and deep dish. Let me know which one you would like.',
-    next: 'topping'
-  },
-  // topping: {
-  //   question: 'Yes you can! What kind of pizza would you like?',
-  //   statement: 'Nice! Sounds like we are making a delicious pizza here. What kind of sauce do you want?',
-  //   query: 'I\'m not sure I have that topping available. Give me another toping you would like instead.',
-  //   next: 'sauce'
-  // }
-
-};
+const request = require('request');
+const expect = require('chai').expect;
+const chaiHttp = require('chai-http');
+const chai = require('chai');
+const should = chai.should();
+const punctuation = require('../server/models/contextGen').punctuation;
+const contextGen = require('../server/models/contextGen').contextGen;
+const responseGen = require('../server/models/responseGen').responseGen;
+const responseObj = require('../server/models/responseGen').responseObj;
 
 chai.use(chaiHttp);
 
@@ -106,7 +79,7 @@ describe('punctuation', function() {
 });
 
 
-describe('calculate context', function () {
+describe('Calculate Context', function () {
   it('should return no contexts when none of the words match', function() {
     contextGen(['my', 'name'], 'toppings', function (calculatedContext, context, punctuation) {
       expect(calculatedContext).to.equal(null);
@@ -125,39 +98,56 @@ describe('calculate context', function () {
     });
   });
 
+  // assertion
   it('should handle assertion correctly', function() {
     contextGen(['absolutely'], 'newOrder', function (calculatedContext, context, punctuation) {
       expect(calculatedContext).to.equal('newOrder');
     });
   });
+
+  // negation
+  it('should handle negation correctly', function () {
+    contextGen(['no'], 'newOrder', function (calculatedContext, context, punctuation) {
+      expect(calculatedContext).to.equal('negation');
+    });
+  });
+
+  // restart
+  it('should handle restart correctly', function () {
+    contextGen(['start'], 'newOrder', function (calculatedContext, context, punctuation) {
+      expect(calculatedContext).to.equal('restart');
+    });
+  });
+
+
 });
 
-describe('response generator', function() {
+describe('Response Generator', function() {
   it('should return an im sorry phrase to the user if there is no context provided', function() {
-    responseGen('not greeting', 'greeting', 'statement', function(obj) {
-      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.greeting.query;
+    responseGen('newOrder', 'pizzaType', 'statement', function(obj) {
+      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.pizzaType.query;
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
   it('should return the next context when the calculated context matches the message context', function() {
-    responseGen('greeting', 'greeting', 'statement', function (obj) {
-      var expectedOutput = responseObj.greeting.next;
+    responseGen('newOrder', 'newOrder', 'statement', function (obj) {
+      var expectedOutput = responseObj.newOrder.next;
       expect(obj.nextContext).to.equal(expectedOutput);
     });
   });
 
   it('should return the correct statement if the calculated context matches the message context', function() {
-    responseGen('greeting', 'greeting', 'statement', function (obj) {
-      var expectedOutput = responseObj['greeting'].statement;
+    responseGen('newOrder', 'newOrder', 'statement', function (obj) {
+      var expectedOutput = responseObj['newOrder'].statement;
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
   // null context gen
   it('should return a query question statement if the calculated context is null', function() {
-    responseGen('', 'greeting', 'statement', function (obj) {
-      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.greeting.query;
+    responseGen('', 'newOrder', 'statement', function (obj) {
+      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.newOrder.query;
       expect(obj.output).to.equal(expectedOutput);
     });
   });
@@ -174,6 +164,21 @@ describe('response generator', function() {
   it('should return a query question statement if the calculated context is null', function () {
     responseGen('newOrder', 'newOrder', 'statement', function (obj) {
       var expectedOutput = responseObj.newOrder.statement;
+      expect(obj.output).to.equal(expectedOutput);
+    });
+  });
+
+  // negation
+  it('should return the correct statement for negation calc context ', function () {
+    responseGen('negation', 'newOrder', 'statement', function (obj) {
+      var expectedOutput = 'I\'m sorry you don\'t want to continue your order right now. I\'ll be waiting here if you want to restart your order. Just say \'start again\' and we can pick up where we left off';
+      expect(obj.output).to.equal(expectedOutput);
+    });
+  });
+
+  it('should return the correct statement for restart calc context ', function () {
+    responseGen('restart', 'pizzaType', 'statement', function (obj) {
+      var expectedOutput = 'Woohoo! Let\'s pick up where we left off.' + responseObj.pizzaType.statement;
       expect(obj.output).to.equal(expectedOutput);
     });
   });
