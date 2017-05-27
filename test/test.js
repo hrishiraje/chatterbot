@@ -60,8 +60,18 @@ describe('server', function() {
 
 describe('punctuation', function(){
   it('should return question for ?', function(){
-    var result = context.punctuation(['large', 'pizza', '?']);
+    var result = punctuation(['large', 'pizza', '?']);
     expect(result).to.equal('question');
+  });
+
+  it('should return question for a question word', function(){
+    var result = punctuation(['why', 'pizza', '?']);
+    expect(result).to.equal('question');
+  });
+
+  it('should return statement if no question terms included', function(){
+    var result = punctuation(['large', 'pizza']);
+    expect(result).to.equal('statement');
   });
 });
 
