@@ -154,6 +154,7 @@ describe('response generator', function() {
     });
   });
 
+  // null context gen
   it('should return a query question statement if the calculated context is null', function() {
     responseGen('', 'greeting', 'statement', function (obj) {
       var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.greeting.query;
@@ -161,11 +162,21 @@ describe('response generator', function() {
     });
   });
 
-  //assertion
+  //punct question
+  it('should return a question output if the punct is a question', function () {
+    responseGen('newOrder', 'newOrder', 'question', function (obj) {
+      var expectedOutput = responseObj.newOrder.question;
+      expect(obj.output).to.equal(expectedOutput);
+    });
+  });
 
   //punct statement
-
-  //punct question
+  it('should return a query question statement if the calculated context is null', function () {
+    responseGen('newOrder', 'newOrder', 'statement', function (obj) {
+      var expectedOutput = responseObj.newOrder.statement;
+      expect(obj.output).to.equal(expectedOutput);
+    });
+  });
 
 });
 
