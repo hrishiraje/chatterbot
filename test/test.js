@@ -95,7 +95,7 @@ describe('calculate context', function(){
     });
   });
 
-      it('should return assertion correctly', function(){
+      it('should handle assertion correctly', function(){
     contextGen(['absolutely'], 'newOrder', function(calculatedContext, context, punctuation){
       expect(calculatedContext).to.equal('newOrder');
     });
