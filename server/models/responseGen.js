@@ -15,7 +15,6 @@ module.exports = (calContext, currentContext, punctuation, cb) => {
       nextContext: responseObj[currentContext].next
     };
 
-    
     if (punctuation === 'question') {
       obj.output = responseObj[calContext].question;
     } else {
@@ -82,3 +81,5 @@ var responseObj = {
 
 };
 
+
+var dominosToppings = {};
