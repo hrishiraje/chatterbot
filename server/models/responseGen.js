@@ -3,6 +3,10 @@ const contextGen = require('./contextGen');
 
 module.exports = (calContext, currentContext, punctuation, cb) => {
 
+  console.log('received punctuation by responsegen ', punctuation);
+  console.log('calcContext ', calContext);
+  console.log('expected context ', currentContext);
+
   //checking inside calContext.txt
   if (calContext === currentContext || calContext === 'assertion') {
     var obj = {
@@ -35,7 +39,7 @@ module.exports = (calContext, currentContext, punctuation, cb) => {
     var obj = {
       output: responseObj[currentContext].query,
       currentContext: currentContext,
-      nextContext: responseObj[currentContext].next
+      nextContext: currentContext
     }; 
     cb(obj);
   } else if (calContext !== currentContext && calContext !== 'negation') {

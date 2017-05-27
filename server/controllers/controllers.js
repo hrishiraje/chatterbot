@@ -6,6 +6,10 @@ module.exports = {
     responseGet: function(req, res) {
       var queryParameter = url.parse(req.url, true).query;
       console.log('query parameter received --->', queryParameter);
+      if(queryParameter.message[queryParameter.message.length - 1] === '?') {
+        queryParameter.message = queryParameter.message.slice(0, queryParameter.message.length - 1) + ' ' + queryParameter.message[queryParameter.message.length - 1];
+        
+      }
       var message = queryParameter.message.split(' ');
       var messageContext = queryParameter.context;
       
