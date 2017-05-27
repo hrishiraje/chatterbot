@@ -48,6 +48,11 @@ module.exports.contextGen = function(message, context, cb) {
     if (contexts[0] === 'assertion') {
       contexts[0] = context;
     }
+    
+    // else if (contexts[0] === 'negation') {
+    //   contexts[0] = 'restart';
+    // }
+
     var calculatedPunctuation = module.exports.punctuation(message);
     console.log('calculatedPunction ', calculatedPunctuation);
     cb(contexts[0], context, calculatedPunctuation);
