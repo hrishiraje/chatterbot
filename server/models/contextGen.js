@@ -1,10 +1,24 @@
 const contextData = require('./context.js');
 const contextValue = require('./contextValues');
-const calculatedContext = require('./calculator');
+// const calculatedContext = require('./calculator');
 const punct = require('./punctuationCalc');
 const keyGrabber = require('./contextKeys');
 // message is an array of words given to us by the user
 // context is the message context
+var calculatedContext;
+var punctuation = function(wordArray) {
+  var found = false;
+  question = ['why', 'when', 'where', '?', 'can'],
+  wordArray.forEach(function(word){
+    if(question.includes(word)) {
+      console.log('found a question');
+      found = true;
+    }
+  });
+  return found? 'question': 'statement';
+}
+
+module.exports = punctuation;
 
 module.exports = function(message, context, cb) {
 
@@ -32,7 +46,8 @@ module.exports = function(message, context, cb) {
     if (contexts[0] === 'assertion') {
       contexts[0] = context;
     }
-    var calculatedPunctuation = 'statement';
+    var calculatedPunctuation = punctuation(message);
+    console.log('calculatedPunction ', calculatedPunctuation);
     cb(contexts[0], context, calculatedPunctuation);
 
   } else if (contexts.length > 1) {
@@ -52,6 +67,7 @@ module.exports = function(message, context, cb) {
     //   }
     // }
 
+
     // if (calculatedContext === 'assertion') {
     //   calculatedContext = returnContext;
     // }
@@ -62,6 +78,8 @@ module.exports = function(message, context, cb) {
       calculatedContext = null;
     }
     console.log('What we are sending in fam', calculatedContext, context);
+
+
     cb(calculatedContext, context, 'statement');
   }
 };

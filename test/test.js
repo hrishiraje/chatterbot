@@ -3,6 +3,7 @@ var expect = require('chai').expect;
 var chaiHttp = require('chai-http');
 var chai = require('chai');
 var should = chai.should();
+var punctuation = require('../server/models/contextGen').punctuation;
 
 chai.use(chaiHttp);
 
@@ -56,3 +57,11 @@ describe('server', function() {
   });
 
 });
+
+describe('punctuation', function(){
+  it('should return question for ?', function(){
+    var result = context.punctuation(['large', 'pizza', '?']);
+    expect(result).to.equal('question');
+  });
+});
+
