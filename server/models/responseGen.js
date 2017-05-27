@@ -7,6 +7,16 @@ module.exports = (calContext, currentContext, punctuation, cb) => {
   console.log('calcContext ', calContext);
   console.log('expected context ', currentContext);
 
+  if(calContext === 'negation') {
+    var obj = {
+      output: 'I\'m sorry you don\'t want to continue your order right now. I\'ll be waiting here if you want to restart your order. Just say \'start again\' and we can pick up where we left off', 
+      currentContext: currentContext,
+      nextContext: currentContext
+    }
+    cb(obj); 
+    
+  }
+
   //checking inside calContext.txt
   if (calContext === currentContext || calContext === 'assertion') {
     var obj = {
@@ -48,8 +58,19 @@ module.exports = (calContext, currentContext, punctuation, cb) => {
       nextContext: responseObj[currentContext].next
     };
     cb(obj);
-  } else {
-    //negation code goes here
+  } else if (calContext === 'negation') {
+    var obj = {
+      output: 'I\'m sorry you don\'t want to continue your order right now. I\'ll be waiting here if you want to restart your order. Just say \'start again\' and we can pick up where we left off', 
+      currentContext: currentContext,
+      nextContext: currentContext
+    }
+    cb(obj); 
+  } else if (calContext === 'restart') {
+    var obj = {
+      output: 'Woohoo! Let\'s pick up where we left off.' + responseObj[currentContext].statement,
+      currentContext: currentContext,
+      nextContext: currentContext
+    }
   }
 };
 
