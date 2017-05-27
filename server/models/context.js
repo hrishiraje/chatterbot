@@ -6,6 +6,6 @@ module.exports = {
   sauce: ['Alfredo Sauce', 'BBQ Sauce', 'Balsamic', 'Blue Cheese', 'Caesar', 'Icing', 'Kicker Hot Sauce', 'Marinara', 'Ranch', 'Sweet Mango Habanero Sauce'],
   finalOrder: [],
   assertion: ['yes', 'yeah', 'yah', 'ya', 'sure', 'absolutely', 'definitely'],
-  negation: ['no', 'nah', 'na', 'nope'],
-  restart: ['start', 'again']
+  negation: ['no', 'nah', 'na', 'nope', 'not'],
+  restart: ['start']
 };
