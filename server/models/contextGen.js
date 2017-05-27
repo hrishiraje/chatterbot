@@ -7,9 +7,11 @@ const keyGrabber = require('./contextKeys');
 // context is the message context
 var calculatedContext;
 module.exports.punctuation = function(wordArray) {
+  console.log('in punct');
   var found = false;
   question = ['why', 'when', 'where', '?', 'can'],
   wordArray.forEach(function(word) {
+    console.log(word);
     if (question.includes(word)) {
       console.log('found a question');
       found = true;
@@ -19,6 +21,8 @@ module.exports.punctuation = function(wordArray) {
 };
 
 module.exports.contextGen = function(message, context, cb) {
+
+  // module.exports.punctuation(['hello']);
 
   var contexts = [];
   for (let i = 0; i < message.length; i++) {
