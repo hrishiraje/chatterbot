@@ -1,5 +1,5 @@
 var responseGen = require('./responseGen');
-var contextGen = require('./contextGen');
+var contextGen = require('./contextGen').contextGen;
 
 module.exports = {
   robot: {
