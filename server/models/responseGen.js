@@ -1,7 +1,7 @@
 //object coming from Contextgen giving calContext in string and expected next calContext punctiation
 const contextGen = require('./contextGen');
 
-module.exports = (calContext, currentContext, punctuation, cb) => {
+module.exports.responseGen = function(calContext, currentContext, punctuation, cb) {
 
   console.log('received punctuation by responsegen ', punctuation);
   console.log('calcContext ', calContext);
@@ -22,7 +22,7 @@ module.exports = (calContext, currentContext, punctuation, cb) => {
       output: 'Woohoo! Let\'s pick up where we left off.' + responseObj[currentContext].statement,
       currentContext: currentContext,
       nextContext: responseObj[currentContext].next
-    }
+    };
     cb(obj);
   } else 
 
@@ -72,7 +72,7 @@ module.exports = (calContext, currentContext, punctuation, cb) => {
       output: 'I\'m sorry you don\'t want to continue your order right now. I\'ll be waiting here if you want to restart your order. Just say \'start again\' and we can pick up where we left off', 
       currentContext: currentContext,
       nextContext: responseObj[currentContext].prev
-    }
+    };
     cb(obj); 
   } /*else if (calContext === 'restart') {
     var obj = {
@@ -116,3 +116,5 @@ var responseObj = {
 
 
 var dominosToppings = {};
+
+module.exports.responseObj = responseObj;
