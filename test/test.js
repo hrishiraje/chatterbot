@@ -107,54 +107,59 @@ describe('punctuation', function() {
 
 
 describe('calculate context', function () {
-  it('should return no contexts when none of the words match', function () {
+  it('should return no contexts when none of the words match', function() {
     contextGen(['my', 'name'], 'toppings', function (calculatedContext, context, punctuation) {
       expect(calculatedContext).to.equal(null);
     });
   });
 
-  it('should return a single context when one word matches', function () {
+  it('should return a single context when one word matches', function() {
     contextGen(['order', 'name'], 'toppings', function (calculatedContext, context, punctuation) {
       expect(calculatedContext).to.equal('newOrder');
     });
   });
 
-  it('should return the correct expected context when there are multiple potential contexts', function () {
+  it('should return the correct expected context when there are multiple potential contexts', function() {
     contextGen(['order', 'pepperoni'], 'newOrder', function (calculatedContext, context, punctuation) {
       expect(calculatedContext).to.equal('newOrder');
     });
   });
 
-  it('should handle assertion correctly', function () {
+  it('should handle assertion correctly', function() {
     contextGen(['absolutely'], 'newOrder', function (calculatedContext, context, punctuation) {
       expect(calculatedContext).to.equal('newOrder');
     });
   });
 });
 
-describe('response generator', function () {
-  it('should return an im sorry phrase to the user if there is no context provided', function () {
-    responseGen('greeting', 'not greeting', 'statement', function(obj) {
-      var expectedOutput = responseObj['greeting'].query;
+describe('response generator', function() {
+  it('should return an im sorry phrase to the user if there is no context provided', function() {
+    responseGen('not greeting', 'greeting', 'statement', function(obj) {
+      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.greeting.query;
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
-  it('should return the next context when the calculated context matches the message context', function () {
+  it('should return the next context when the calculated context matches the message context', function() {
     responseGen('greeting', 'greeting', 'statement', function (obj) {
-      var expectedOutput = responseObj['greeting'].next;
+      var expectedOutput = responseObj.greeting.next;
       expect(obj.nextContext).to.equal(expectedOutput);
     });
   });
 
-  it('should return the correct statement if the calculated context matches the message context', function () {
+  it('should return the correct statement if the calculated context matches the message context', function() {
     responseGen('greeting', 'greeting', 'statement', function (obj) {
       var expectedOutput = responseObj['greeting'].statement;
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
-  //null
+  it('should return a query question statement if the calculated context is null', function() {
+    responseGen('', 'greeting', 'statement', function (obj) {
+      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.greeting.query;
+      expect(obj.output).to.equal(expectedOutput);
+    });
+  });
 
   //assertion
 
