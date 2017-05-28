@@ -1,4 +1,4 @@
-var responseGen = require('./responseGen').responseGen;
+var responseGen = require('./responseGen');
 var contextGen = require('./contextGen').contextGen;
 
 module.exports = {
