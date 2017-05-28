@@ -87,21 +87,27 @@ describe('Calculate Context', function () {
   });
 
   it('should return a single context when one word matches', function() {
-    contextGen(['order', 'name'], 'toppings', function (calculatedContext, context, punctuation) {
-      expect(calculatedContext).to.equal('newOrder');
+    contextGen(['very', 'lol'], 'hungerLevel', function (calculatedContext, context, punctuation) {
+      expect(calculatedContext).to.equal('hungerLevel');
     });
   });
 
-  it('should return the correct expected context when there are multiple potential contexts', function() {
-    contextGen(['order', 'pepperoni'], 'newOrder', function (calculatedContext, context, punctuation) {
-      expect(calculatedContext).to.equal('newOrder');
+  it('should return a single context when one word matches', function () {
+    contextGen(['10', 'lol'], 'totalPeople', function (calculatedContext, context, punctuation) {
+      expect(calculatedContext).to.equal('totalPeople');
+    });
+  });
+
+  it('should return a single context when one word matches', function () {
+    contextGen(['exit', 'lol'], 'quit', function (calculatedContext, context, punctuation) {
+      expect(calculatedContext).to.equal('quit');
     });
   });
 
   // assertion
   it('should handle assertion correctly', function() {
     contextGen(['absolutely'], 'newOrder', function (calculatedContext, context, punctuation) {
-      expect(calculatedContext).to.equal('newOrder');
+      expect(calculatedContext).to.equal('assertion');
     });
   });
 
@@ -118,7 +124,6 @@ describe('Calculate Context', function () {
       expect(calculatedContext).to.equal('restart');
     });
   });
-
 
 });
 
