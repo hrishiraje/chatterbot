@@ -3,9 +3,11 @@ const contextGen = require('./contextGen');
 
 module.exports = (calContext, expectedContext, punctuation, cb) => {
 
+
   console.log('received punctuation by responsegen ', punctuation);
   console.log('calcContext ', calContext);
   console.log('expected context ', expectedContext);
+
 
   var obj = {
     output: '',
@@ -94,14 +96,19 @@ module.exports = (calContext, expectedContext, punctuation, cb) => {
   // }
 };
 
+
 var responseObj = {
   greeting: {
-    question: 'Yes you can! What kind of pizza would you like?',
+    question: 'What kind of pizza would you like?',
     statement: 'What kind of pizza would you like?',
     query: 'Was this a greeting?',
-    next: 'newOrder'
+    next: 'newOrder',
+    prev: 'greeting',
+    assertion: '',
+    negation: ''
   },
   newOrder: {
+
     // question: 'Alright! Would you like to order a new pizza?',
     statement: 'Alright! Would you like to order a new pizza?',
     query: 'I\'m not sure I understand. Want to start a new order for pizza?',
@@ -152,6 +159,7 @@ var responseObj = {
   },
 
 
+
   // topping: {
   //   question: 'Yes you can! What kind of pizza would you like?',
   //   statement: 'Nice! Sounds like we are making a delicious pizza here. What kind of sauce do you want?',
@@ -161,3 +169,24 @@ var responseObj = {
 
 };
 
+
+module.exports = {
+  greeting: ['hi', 'hello', 'what’s', 'up', 'been', 'you', 'what', 'sup', 'yo', 'good'],
+  newOrder: ['new', 'order', 'pizza', 'want'],
+  hungerLevel: ['very', 'little', 'lot', 'decent', 'medium', 'starving', 'ravenous', 'super', 'hella', 'eh'],
+  totalPeople: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20'],
+  confirmCount: [],
+  toppings: [],
+  sides: [],
+  drinks: [],
+  finalOrder: [],
+  assertion: ['yes', 'yeah', 'yah', 'ya', 'sure', 'absolutely', 'definitely'],
+  negation: ['no', 'nah', 'na', 'nope', 'not'],
+  restart: ['start'],
+  quit: ['exit', 'cancel', 'stop', 'quit', 'terminate']
+};
+
+
+var dominosToppings = {};
+
+module.exports.responseObj = responseObj;

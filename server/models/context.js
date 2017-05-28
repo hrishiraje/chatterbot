@@ -1,4 +1,5 @@
 module.exports = {
+
   newOrder: ['new', 'order', 'pizza'],
   hungerLevel: ['very', 'little', 'medium', 'starving', 'ravenous'],
   peopleCount: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
@@ -10,4 +11,5 @@ module.exports = {
   assertion: ['yes', 'yeah', 'yah', 'ya', 'sure', 'absolutely', 'definitely'],
   negation: ['no', 'nah', 'na', 'nope'],
   restart: ['start']
+
 };

@@ -6,6 +6,7 @@ const keyGrabber = require('./contextKeys');
 // message is an array of words given to us by the user
 // context is the message context
 var calculatedContext;
+
 module.exports.punctuation = function(wordArray) {
   console.log('in punct');
   var found = false;
@@ -24,7 +25,6 @@ module.exports.contextGen = function(message, expectedNextContext, cb) {
 
   // module.exports.punctuation(['hello']);
 
-  
 
   var contexts = [];
   for (let i = 0; i < message.length; i++) {
@@ -38,6 +38,7 @@ module.exports.contextGen = function(message, expectedNextContext, cb) {
       }
     }
   }
+
 
   console.log(contexts); 
 // if(contexts[0] === 'restart') {
@@ -53,8 +54,6 @@ module.exports.contextGen = function(message, expectedNextContext, cb) {
   } else if (contexts.length === 0) {
 
     cb(null, expectedNextContext, 'statement');
-
-  } else if (contexts.length === 1) {
 
     // if (contexts[0] === 'assertion') {
     //   contexts[0] = expectedNextContext;
@@ -78,8 +77,3 @@ module.exports.contextGen = function(message, expectedNextContext, cb) {
     cb(calculatedContext, context, 'statement');
   }
 };
-
-
-
-
-
