@@ -1,10 +1,9 @@
 //object coming from Contextgen giving calContext in string and expected next calContext punctiation
 const contextGen = require('./contextGen');
 
-module.exports = (calContext, expectedContext, punctuation, cb) => {
+module.exports = (calContext, expectedContext, array, cb) => {
 
 
-  console.log('received punctuation by responsegen ', punctuation);
   console.log('calcContext ', calContext);
   console.log('expected context ', expectedContext);
 
@@ -13,8 +12,11 @@ module.exports = (calContext, expectedContext, punctuation, cb) => {
     output: '',
     nextContext: ''
   };
-
-  if(calContext === 'newOrder') {
+ if(calContext === 'peopleCount') {
+   obj.output = responseObj[responseObj[expectedContext].next].statement + array[0] + '. Just say \'abracadabra\' when you are ready to continue';
+    obj.nextContext = responseObj[expectedContext].next;
+ }
+ else if(calContext === 'newOrder') {
     obj.output = responseObj[calContext].statement;
     obj.nextContext = 'newOrder';
   }
@@ -135,8 +137,7 @@ var responseObj = {
   },
 
   totalPizzas: {
-    statement : 'I\'ve done some math, and I think you need 4 large and 2 medium pizzas. If that works, just say \'abracadabra\'',
-    query: 'Abracadabra!',
+    statement : 'I\'ve done some math, and I think you need ',
     negation: 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin',
     next: 'toppings',
     prev: 'peopleCount'
