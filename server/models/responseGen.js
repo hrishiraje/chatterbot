@@ -1,91 +1,101 @@
 //object coming from Contextgen giving calContext in string and expected next calContext punctiation
 const contextGen = require('./contextGen');
 
-module.exports.responseGen = function(calContext, currentContext, punctuation, cb) {
+module.exports = (calContext, expectedContext, punctuation, cb) => {
+
 
   console.log('received punctuation by responsegen ', punctuation);
   console.log('calcContext ', calContext);
-  console.log('expected context ', currentContext);
+  console.log('expected context ', expectedContext);
+
+
+  var obj = {
+    output: '',
+    nextContext: ''
+  };
+
+  if(calContext === 'newOrder') {
+    obj.output = responseObj[calContext].statement;
+    obj.nextContext = 'newOrder';
+  }
+
+ else if(calContext === 'restart') {
+    obj.output = responseObj[expectedContext].statement;
+    obj.nextContext = expectedContext;
+  } 
+  
+  else if (calContext === 'assertion') {
+    obj.output = responseObj[responseObj[expectedContext].next].statement;
+    obj.nextContext = responseObj[expectedContext].next;
+  }
+
+  else if(calContext === 'negation') {
+    obj.output = responseObj[responseObj[expectedContext].prev].negation;
+    obj.nextContext = expectedContext;
+  } 
+  
+  else if (calContext === expectedContext) {
+    obj.output = responseObj[responseObj[expectedContext].next].statement;
+    obj.nextContext = responseObj[expectedContext].next;
+  } 
+  
+  else if (calContext !== expectedContext) {
+    obj.output = responseObj[expectedContext].query;
+    obj.nextContext = expectedContext;
+  }
+
+
+  cb(obj);
 
 
 
-
-  // if(calContext === 'negation') {
+  // //checking inside calContext.txt
+  // if (calContext === currentContext || calContext === 'assertion') {
   //   var obj = {
-  //     output: 'I\'m sorry you don\'t want to continue your order right now. I\'ll be waiting here if you want to restart your order. Just say \'start again\' and we can pick up where we left off', 
+  //     output: '',
+  //     currentContext: currentContext,
+  //     nextContext: responseObj[currentContext].next
+  //   };
+
+    
+  //   if (punctuation === 'question') {
+  //     obj.output = responseObj[calContext].question;
+  //   } else {
+  //     obj.output = responseObj[calContext].statement;
+  //   }
+
+  //   if (obj.nextContext === 'topping') {
+  //     obj.toppings = [
+  //       {
+  //         name: 'pepperoni'
+  //       },
+  //       {
+  //         name: 'cheese'
+  //       }
+  //     ];
+  //     cb(obj);
+  //   } else {
+  //     cb(obj);
+  //   }
+  // } else if (calContext === null) {
+  //   var obj = {
+  //     output: responseObj[currentContext].query,
   //     currentContext: currentContext,
   //     nextContext: currentContext
-  //   }
-  //   cb(obj); 
-    
+  //   }; 
+  //   cb(obj);
+  // } else if (calContext !== currentContext && calContext !== 'negation') {
+  //   var obj = {
+  //     output: 'I\'m sorry. I didn\'t understand that. ' + responseObj[currentContext].query,
+  //     currentContext: currentContext,
+  //     nextContext: responseObj[currentContext].next
+  //   };
+  //   cb(obj);
+  // } else {
+  //   //negation code goes here
   // }
+};
 
-//   if (calContext === 'restart') {
-//     var obj = {
-//       output: 'Woohoo! Let\'s pick up where we left off.' + responseObj[currentContext].statement,
-//       currentContext: currentContext,
-//       nextContext: responseObj[currentContext].next
-//     };
-//     cb(obj);
-//   } else 
-
-//   //checking inside calContext.txt
-//   if (calContext === currentContext || calContext === 'assertion') {
-//     var obj = {
-//       output: '',
-//       currentContext: currentContext,
-//       nextContext: responseObj[currentContext].next
-//     };
-
-//     if (punctuation === 'question') {
-//       obj.output = responseObj[calContext].question;
-//     } else {
-//       obj.output = responseObj[calContext].statement;
-//     }
-
-//     if (obj.nextContext === 'topping') {
-//       obj.toppings = [
-//         {
-//           name: 'pepperoni'
-//         },
-//         {
-//           name: 'cheese'
-//         }
-//       ];
-//       cb(obj);
-//     } else {
-//       cb(obj);
-//     }
-//   } else if (calContext === null) {
-//     var obj = {
-//       output: responseObj[currentContext].query,
-//       currentContext: currentContext,
-//       nextContext: currentContext
-//     }; 
-//     cb(obj);
-//   } else if (calContext !== currentContext && calContext !== 'negation') {
-//     var obj = {
-//       output: 'I\'m sorry. I didn\'t understand that. ' + responseObj[currentContext].query,
-//       currentContext: currentContext,
-//       nextContext: responseObj[currentContext].prev
-//     };
-//     cb(obj);
-//   } else if (calContext === 'negation') {
-//     var obj = {
-//       output: 'I\'m sorry you don\'t want to continue your order right now. I\'ll be waiting here if you want to restart your order. Just say \'start again\' and we can pick up where we left off', 
-//       currentContext: currentContext,
-//       nextContext: responseObj[currentContext].prev
-//     };
-//     cb(obj); 
-//   } /*else if (calContext === 'restart') {
-//     var obj = {
-//       output: 'Woohoo! Let\'s pick up where we left off.' + responseObj[currentContext].statement,
-//       currentContext: currentContext,
-//       nextContext: currentContext
-//     }
-//     cb(obj);
-//   }*/
-// };
 
 var responseObj = {
   greeting: {
@@ -98,48 +108,58 @@ var responseObj = {
     negation: ''
   },
   newOrder: {
-    question: 'Yes you can! How hungry are you?',
-    statement: 'Great! Let\'s get started. How hungry are you?',
-    query: 'I\'m not sure I understand. Do you want to order a new pizza, yes or no',
+
+    // question: 'Alright! Would you like to order a new pizza?',
+    statement: 'Alright! Would you like to order a new pizza?',
+    query: 'I\'m not sure I understand. Want to start a new order for pizza?',
+    negation: 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin',
     next: 'hungerLevel',
-    prev: 'greeting',
-    assertion: 'Great! Let\'s get started. How hungry are you?',
-    negation: 'Ok, let me know when you want to continue. You can just type \'start again\' to continue'
+    prev: 'newOrder'
   },
+
   hungerLevel: {
-    question: 'And how many people other than you are going to be eating?',
-    statement: 'And how many people other than you are going to be eating?',
-    query: 'I\'m not sure I understand. How would you describe your hunger level?',
-    next: 'totalPeople',
-    prev: 'newOrder',
-    assertion: 'And how many people other than you are going to be eating?',
-    negation: 'Ok, let me know when you want to continue. You can just type \'start again\' to continue'
+    statement: 'Why don\'t you tell me how hungry you are',
+    query: 'Umm ... what was that? Very hungry, moderately hungry, or a little?',
+    negation: 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin',
+    next: 'peopleCount',
+    prev: 'newOrder'
   },
-  totalPeople: { // custom assertion logic, dont just go on to next context, keep context the same for this one
-    question: 'Ok', // programmatically add number of pizzas that you will order
-    statement: 'Ok', // programmatically add number of pizzas that you will order,
-    query: 'Can\'t tell if that was English. Just type in the number of people besides you.',
-    next: 'confirmCount',
-    prev: 'hungerLevel',
-    assertion: 'Thats not really what I\'m asking for. Can you tell me the number of people.',
-    negation: 'Thats not really what I\'m asking for. Can you tell me the number of people.'
+
+  peopleCount: {
+    statement: 'Okay. How many additional people will be eating with you?',
+    query: 'I\'m just looking for a count ... 0 / 1 /2 etc.',
+    negation: 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin',
+    next: 'totalPizzas',
+    prev: 'hungerLevel'
+
   },
-  confirmCount: { 
-    question: '',
-    statement: '',
-    query: '',
-    next: '',
-    prev: '',
-    assertion: '',
-    negation: ''
+
+  totalPizzas: {
+    statement : 'I\'ve done some math, and I think you need 4 large and 2 medium pizzas. If that works, just say \'abracadabra\'',
+    query: 'Abracadabra!',
+    negation: 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin',
+    next: 'toppings',
+    prev: 'peopleCount'
+
   },
-  // pizzaType: {
-  //   question: 'Of course! So what kind of toppings would you like?',
-  //   statement: 'Let\'s pick some toppings! Why don\'t you put on your VR headset!',
-  //   query: 'I\'m not sure I understand. A few of the crusts that I have are: thin and deep dish. Let me know which one you would like.',
-  //   next: 'topping',
-  //   prev: 'newOrder'
-  // },
+
+  toppings: {
+    statement: 'Alright! Ready to select some toppings? Click away, and I\'ll add these to your order',
+    query: 'Pick from the toppings you see around you. You can use your VR headset',
+    negation: 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin',
+    next: 'sides',
+    prev: 'totalPizzas'  
+  },
+
+  pizzaType: {
+    question: 'Of course! So what kind of toppings would you like?',
+    statement: 'Sweet, now that we have the size, pick the toppings you like. Here are some options',
+    query: 'I\'m not sure I understand. A few of the crusts that I have are: thin and deep dish. Let me know which one you would like.',
+    next: 'topping'
+  },
+
+
+
   // topping: {
   //   question: 'Yes you can! What kind of pizza would you like?',
   //   statement: 'Nice! Sounds like we are making a delicious pizza here. What kind of sauce do you want?',

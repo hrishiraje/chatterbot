@@ -31,7 +31,7 @@ module.exports = {
     },
     startup: function(req, res) {
       var message = {
-        text: 'Hi there, my name is chatbot! Can I help you order a pizza?',
+        text: 'Hi there, my name is Chatty! Type in any character to begin',
         nextContext: 'newOrder'  
       };
       res
