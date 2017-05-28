@@ -20,9 +20,11 @@ module.exports.punctuation = function(wordArray) {
   return found ? 'question' : 'statement';
 };
 
-module.exports.contextGen = function(message, context, cb) {
+module.exports.contextGen = function(message, expectedNextContext, cb) {
 
   // module.exports.punctuation(['hello']);
+
+  
 
   var contexts = [];
   for (let i = 0; i < message.length; i++) {
@@ -37,51 +39,42 @@ module.exports.contextGen = function(message, context, cb) {
     }
   }
 
-  console.log(contexts);  
+  console.log(contexts); 
+// if(contexts[0] === 'restart') {
+//   cb('restart')
+// }
+// else 
+  if(contexts.length === 0 && expectedNextContext === 'totalPizzas') {
+    cb('totalPizzas', expectedNextContext, 'statement');
+  }
+  else if(contexts.length === 0 && expectedNextContext === 'newOrder') {
+     cb('newOrder', expectedNextContext, 'statement');
 
-  if (contexts.length === 0) {
+  } else if (contexts.length === 0) {
 
-    cb(null, context, 'statement');
+    cb(null, expectedNextContext, 'statement');
 
   } else if (contexts.length === 1) {
 
-    if (contexts[0] === 'assertion') {
-      contexts[0] = context;
-    }
+    // if (contexts[0] === 'assertion') {
+    //   contexts[0] = expectedNextContext;
+    // }
     var calculatedPunctuation = module.exports.punctuation(message);
     console.log('calculatedPunction ', calculatedPunctuation);
-    cb(contexts[0], context, calculatedPunctuation);
+    cb(contexts[0], expectedNextContext, calculatedPunctuation);
 
   } else if (contexts.length > 1) {
-    // var sum = 0;
-    // var calculation = 0;
 
-    // contexts.forEach((contextname) => {
-    //   sum += contextValue[contextname];
-    // });
-
-    // calculation = Math.round(sum / contexts.length);
-    // var returnContext;
-
-    // for (let key in contextValue) {
-    //   if (contextValue[key] === calculation) {
-    //     returnContext = key;
-    //   }
-    // }
-
-
-    // if (calculatedContext === 'assertion') {
-    //   calculatedContext = returnContext;
-    // }
     var calculatedContext = '';
-    if (contexts.includes(context)) {
-      calculatedContext = context;
-    } else {
+    if (contexts.includes(expectedNextContext)) {
+      calculatedContext = expectedNextcontext;
+    } 
+    else if(contexts.includes('assertion')) {
+      calculatedContext = expectedNextContext;
+    }
+    else {
       calculatedContext = null;
     }
-    console.log('What we are sending in fam', calculatedContext, context);
-
-
     cb(calculatedContext, context, 'statement');
   }
 };
