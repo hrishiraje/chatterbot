@@ -45,22 +45,33 @@ module.exports.contextGen = function(message, expectedNextContext, cb) {
 //   cb('restart')
 // }
 // else 
-  if(contexts.length === 0 && expectedNextContext === 'totalPizzas') {
-    cb('totalPizzas', expectedNextContext, 'statement');
+  if(contexts[0] === 'peopleCount') {
+    var string;
+
+    var num = parseInt(message[0]);
+    var large = Math.ceil((num + 1) / 3);
+    var medium = (num + 1) % 3;
+    if(num === 0) string = '1 medium pizza';
+    else if(medium !== 0) string = large + ' large and 1 medium pizzas';
+    else string = large + ' large pizzas';
+    cb(contexts[0], expectedNextContext, [string]);
+  }
+  else if(contexts.length === 0 && expectedNextContext === 'totalPizzas') {
+    cb('totalPizzas', expectedNextContext, []);
   }
   else if(contexts.length === 0 && expectedNextContext === 'newOrder') {
-     cb('newOrder', expectedNextContext, 'statement');
+     cb('newOrder', expectedNextContext,[]);
 
   } else if (contexts.length === 0) {
 
-    cb(null, expectedNextContext, 'statement');
+    cb(null, expectedNextContext, []);
 
     // if (contexts[0] === 'assertion') {
     //   contexts[0] = expectedNextContext;
     // }
     var calculatedPunctuation = module.exports.punctuation(message);
     console.log('calculatedPunction ', calculatedPunctuation);
-    cb(contexts[0], expectedNextContext, calculatedPunctuation);
+    cb(contexts[0], expectedNextContext, []);
 
   } else if (contexts.length > 1) {
 
@@ -74,6 +85,6 @@ module.exports.contextGen = function(message, expectedNextContext, cb) {
     else {
       calculatedContext = null;
     }
-    cb(calculatedContext, context, 'statement');
+    cb(calculatedContext, context, []);
   }
 };
