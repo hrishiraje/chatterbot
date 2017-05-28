@@ -152,12 +152,12 @@ var responseObj = {
     prev: 'totalPizzas'  
   },
 
-  pizzaType: {
-    question: 'Of course! So what kind of toppings would you like?',
-    statement: 'Sweet, now that we have the size, pick the toppings you like. Here are some options',
-    query: 'I\'m not sure I understand. A few of the crusts that I have are: thin and deep dish. Let me know which one you would like.',
-    next: 'topping'
-  },
+  // pizzaType: {
+  //   question: 'Of course! So what kind of toppings would you like?',
+  //   statement: 'Sweet, now that we have the size, pick the toppings you like. Here are some options',
+  //   query: 'I\'m not sure I understand. A few of the crusts that I have are: thin and deep dish. Let me know which one you would like.',
+  //   next: 'topping'
+  // },
 
 
 
