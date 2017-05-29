@@ -1,7 +1,24 @@
 import React from 'react';
-import { Animated } from 'react-vr';
+import { Animated, StyleSheet, View, Text } from 'react-vr';
 
-export default class BouncingText extends React.Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    width: 1.5,
+    transform: [{translate: [0, 0.7, -3]}],
+    flexDirection: 'column',
+    alignItems: 'stretch'
+  },
+  text: {
+    fontSize: 0.1,
+    color: 'white',
+    textAlign: 'center',
+    backgroundColor: 'lightblue'
+  }
+});
+
+
+class BouncingText extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -19,14 +36,13 @@ export default class BouncingText extends React.Component {
 
   render() {
     return (
-      <Animated.Text
-        style={{
-          layoutOrigin: [0.5, 0.5],
-          transform: [{ translate: [0, 0, -1] }, { scale: this.state.bounceValue }],
-        }}
-      >
-        hello
-      </Animated.Text>
+      <View style={styles.container}>
+        <Animated.Text style={[styles.text, { transform: [{ scale: this.state.bounceValue }]}]}>
+          {this.props.theText}
+        </Animated.Text>
+      </View>
     );
   }
 }
+
+export default BouncingText;
