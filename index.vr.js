@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box } from 'react-vr';
 import axios from 'axios';
 
-import BouncingText from './components/BouncingText';
+import BouncingText from './components/bouncingText';
+import RobotModel from './components/robotModel';
 
 class Basics extends Component {
   constructor(props) {
@@ -59,13 +60,13 @@ class Basics extends Component {
     return (
       <View onInput={this.handleInput.bind(this)}>
         <Pano source={asset('sky_platform.jpg')}></Pano>
-        <View style={{ flex: 1, flexDirection: 'column', width: 2, alignItems: 'stretch', transform: [{translate: [0, 0, -2]}]}}>
-          <Text style={{ color: 'red', transform: [{ translate: [0, 0, 0] }] }}>{this.state.robotText}</Text>
-        </View>
+        {/*<View style={{ flex: 1, flexDirection: 'column', width: 2, alignItems: 'stretch', transform: [{translate: [0, 0, -2]}]}}>*/}
+          {/*<BouncingText style={{ color: 'red', transform: [{ translate: [0, 0, 0] }] }} theText={this.state.robotText}></BouncingText>*/}
+        {/*</View>*/}
+        <RobotModel robotText={this.state.robotText}/>
         <View>
-          <Text style={{ color: 'red', transform: [{ translate: [0, 0, -2] }] }}>{this.state.keyboardText}</Text>
-          <Text style={{ color: 'red', transform: [{ translate: [1, 0, -2] }] }}>{this.state.messageText}</Text>
-          <BouncingText />
+          <Text style={{ backgroundColor: 'lightblue', color: 'red', transform: [{ translate: [-1, 0, -2] }] }}>{this.state.keyboardText}</Text>
+          <Text style={{ backgroundColor: 'grey', color: 'red', transform: [{ translate: [-1, -0.1, -2] }] }}>{this.state.messageText}</Text>
         </View>
       </View>
     );
