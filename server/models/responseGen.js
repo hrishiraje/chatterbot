@@ -11,7 +11,42 @@ module.exports = (calContext, expectedContext, array, cb) => {
     output: '',
     nextContext: ''
   };
-  if (calContext === 'peopleCount') {
+  if (calContext === 'totalPizzas') {
+    obj.output = responseObj[responseObj[expectedContext].next].statement;
+    obj.nextContext = responseObj[expectedContext].next;
+    obj.pizzaCode = '12SCREEN';
+    obj.toppings = [
+      {
+        name: 'Pepperoni',
+        image: '',
+        code: ''
+      },
+      {
+        name: 'Cheese',
+        image: '',
+        code: ''
+      },
+      {
+        name: 'Olives',
+        image: '',
+        code: ''
+      },
+      {
+        name: 'Green Bell peppers',
+        image: '',
+        code: ''
+      },
+      {
+        name: 'Onions',
+        image: '',
+        code: ''
+      },
+      {
+        name: 'Sausage',
+        image: '',
+        code: ''
+      }];
+  } else if (calContext === 'peopleCount') {
     obj.output = responseObj[responseObj[expectedContext].next].statement + array[0] + '. Just say \'abracadabra\' when you are ready to continue';
     obj.nextContext = responseObj[expectedContext].next;
   } else if (calContext === 'newOrder') {
