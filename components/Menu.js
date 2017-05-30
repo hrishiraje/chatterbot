@@ -56,7 +56,7 @@ export default class Menu extends React.Component {
         toppings.push(this.state[key].code)
       }
     }
-    axios.post('/toppings', toppings)
+    axios.post('/api/placeOrder', toppings)
     .then(function (response) {
     console.log(response);
   })

@@ -1,4 +1,4 @@
-var responseGen = require('./responseGen').responseGen;
+var responseGen = require('./responseGen');
 var contextGen = require('./contextGen').contextGen;
 var orderPizza = require('../pizza/pizzaOrdering');
 
@@ -19,14 +19,7 @@ module.exports = {
     },
     placeOrder: function(order, cb) {
       // place API logic for dominoes order here
-      order
-    },
-    toppings: (tops, cb) => {
-      if (!tops) {
-        cb(null, null);
-      } else {
-        cb(null, tops);
-      }
-    }  
+      orderPizza(order);
+    }
   }
 };

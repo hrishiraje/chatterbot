@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Model, asset } from 'react-vr'
-import BouncingText from './bouncingText';
+import BouncingText from './BouncingText';
 
  
 class RobotModel extends Component {
