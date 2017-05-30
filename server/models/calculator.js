@@ -8,7 +8,7 @@ module.exports = (contextArr) => {
   });
   calculation = Math.round(sum / contextArr.length);
   var returnContext;
-  for (let key in contextValues) {
+  for (var key in contextValues) {
     if (contextValues[key] === calculation) {
       returnContext = key;
     }
