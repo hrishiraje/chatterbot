@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box } from 'react-vr';
 import axios from 'axios';
 
-import BouncingText from './components/BouncingText';
+import BouncingText from './components/bouncingText';
 import RobotModel from './components/robotModel';
 import Menu from './components/Menu';
 
@@ -87,11 +87,11 @@ class Basics extends Component {
       <View onInput={this.handleInput.bind(this)}>
         <Pano source={asset('sky_platform.jpg')}></Pano>
         <RobotModel robotText={this.state.robotText}/>
-        <Menu />
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
           <Text style={styles.historyText}>{this.state.messageText}</Text>
         </View>
+        <Menu />
       </View>
     );
   }
