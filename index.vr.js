@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box } from 'react-vr';
 import axios from 'axios';
 
-import BouncingText from './components/bouncingText';
+import BouncingText from './components/BouncingText';
 import RobotModel from './components/robotModel';
+import Menu from './components/Menu';
 
 class Basics extends Component {
   constructor(props) {
@@ -65,8 +66,11 @@ class Basics extends Component {
         {/*</View>*/}
         <RobotModel robotText={this.state.robotText}/>
         <View>
+          <Menu />
+        <View>
           <Text style={{ backgroundColor: 'lightblue', color: 'red', transform: [{ translate: [-1, 0, -2] }] }}>{this.state.keyboardText}</Text>
           <Text style={{ backgroundColor: 'grey', color: 'red', transform: [{ translate: [-1, -0.1, -2] }] }}>{this.state.messageText}</Text>
+        </View>
         </View>
       </View>
     );

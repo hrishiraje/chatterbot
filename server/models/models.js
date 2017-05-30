@@ -18,6 +18,13 @@ module.exports = {
     },
     placeOrder: function(order, cb) {
       // place API logic for dominoes order here
-    } 
+    },
+    toppings: (tops, cb) => {
+      if(!tops) {
+        cb(null, null);
+      } else{
+        cb(null, tops);
+      }
+    }  
   }
 };
