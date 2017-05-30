@@ -1,6 +1,7 @@
 var pizzapi = require('pizzapi');
 var myStore = new pizzapi.Store({});
-pizzapi.Util.findNearbyStores(
+module.exports= ()=> {
+  pizzapi.Util.findNearbyStores(
   '944 Market Street, 7th floor, San Francisco, CA 94102',
   'Delivery',
   function (storeData) {
@@ -24,9 +25,6 @@ pizzapi.Util.findNearbyStores(
       phone: '1-559-545-7498',
       email: 'simmern.kang@gmail.com'
     }
-    var newItem = {
-      code: '12SCREENPKG'
-    };
     var order = new pizzapi.Order({
       customer: customer,
 
@@ -37,8 +35,8 @@ pizzapi.Util.findNearbyStores(
     });
     order.addItem(
       new pizzapi.Item({
-        code: '14SCREEN',
-        options: ['P','K', 'G'],
+        code: '14SCREEN', //code for order
+        options: ['P','K', 'G'], //toppings
         quantity: 1
       })
     );
@@ -77,3 +75,4 @@ pizzapi.Util.findNearbyStores(
   );
   }
 );
+}
