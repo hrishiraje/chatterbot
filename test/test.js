@@ -94,13 +94,13 @@ describe('Calculate Context', function () {
 
   it('should return a single context when one word matches', function () {
     contextGen(['10', 'lol'], 'totalPeople', function (calculatedContext, context, punctuation) {
-      expect(calculatedContext).to.equal('totalPeople');
+      expect(calculatedContext).to.equal('peopleCount');
     });
   });
 
-  it('should return a single context when one word matches', function () {
-    contextGen(['exit', 'lol'], 'quit', function (calculatedContext, context, punctuation) {
-      expect(calculatedContext).to.equal('quit');
+  it('should return a single context when multiple word matches', function () {
+    contextGen(['starving', 'yes'], 'hungerLevel', function (calculatedContext, context, punctuation) {
+      expect(calculatedContext).to.equal('hungerLevel');
     });
   });
 
@@ -128,63 +128,59 @@ describe('Calculate Context', function () {
 });
 
 describe('Response Generator', function() {
-  it('should return an im sorry phrase to the user if there is no context provided', function() {
-    responseGen('newOrder', 'pizzaType', 'statement', function(obj) {
-      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.pizzaType.query;
+  it('should return the correct query statement to the user if there is no context provided', function() {
+    responseGen('toppings', 'hungerLevel', [], function(obj) {
+      var expectedOutput = 'Umm ... what was that? Very hungry, moderately hungry, or a little?';
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
-  it('should return the next context when the calculated context matches the message context', function() {
-    responseGen('newOrder', 'newOrder', 'statement', function (obj) {
-      var expectedOutput = responseObj.newOrder.next;
-      expect(obj.nextContext).to.equal(expectedOutput);
+  it('should return the correct next context when the calculated context matches the message context', function() {
+    responseGen('hungerLevel', 'hungerLevel', [], function (obj) {
+      expect(obj.nextContext).to.equal('peopleCount');
     });
   });
 
   it('should return the correct statement if the calculated context matches the message context', function() {
-    responseGen('newOrder', 'newOrder', 'statement', function (obj) {
-      var expectedOutput = responseObj['newOrder'].statement;
+    responseGen('totalPizzas', 'totalPizzas', [], function (obj) {
+      var expectedOutput = responseObj[responseObj['totalPizzas'].next].statement;
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
   // null context gen
   it('should return a query question statement if the calculated context is null', function() {
-    responseGen('', 'newOrder', 'statement', function (obj) {
-      var expectedOutput = 'I\'m sorry. I didn\'t understand that. ' + responseObj.newOrder.query;
-      expect(obj.output).to.equal(expectedOutput);
-    });
-  });
-
-  //punct question
-  it('should return a question output if the punct is a question', function () {
-    responseGen('newOrder', 'newOrder', 'question', function (obj) {
-      var expectedOutput = responseObj.newOrder.question;
-      expect(obj.output).to.equal(expectedOutput);
-    });
-  });
-
-  //punct statement
-  it('should return a query question statement if the calculated context is null', function () {
-    responseGen('newOrder', 'newOrder', 'statement', function (obj) {
-      var expectedOutput = responseObj.newOrder.statement;
+    responseGen('', 'hungerLevel', [], function (obj) {
+      var expectedOutput = 'Umm ... what was that? Very hungry, moderately hungry, or a little?';
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
   // negation
   it('should return the correct statement for negation calc context ', function () {
-    responseGen('negation', 'newOrder', 'statement', function (obj) {
-      var expectedOutput = 'I\'m sorry you don\'t want to continue your order right now. I\'ll be waiting here if you want to restart your order. Just say \'start again\' and we can pick up where we left off';
+    responseGen('negation', 'newOrder', [], function (obj) {
+      var expectedOutput = 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin';
       expect(obj.output).to.equal(expectedOutput);
     });
   });
 
   it('should return the correct statement for restart calc context ', function () {
-    responseGen('restart', 'pizzaType', 'statement', function (obj) {
-      var expectedOutput = 'Woohoo! Let\'s pick up where we left off.' + responseObj.pizzaType.statement;
+    responseGen('restart', 'hungerLevel', 'statement', function (obj) {
+      var expectedOutput = 'Why don\'t you tell me how hungry you are';
       expect(obj.output).to.equal(expectedOutput);
+    });
+  });
+
+  it('should handle concatenating the number of pizzas correctly', function(){
+    responseGen('peopleCount', 'peopleCount',['2 large and 1 medium pizzas'], function(obj){
+      var expectedOutput = 'I\'ve done some math, and I think you need 2 large and 1 medium pizzas. Just say \'abracadabra\' when you are ready to continue';
+      expect(obj.output).to.equal(expectedOutput);
+    });
+  });
+
+  it('should return the right response for an assertion', function(){
+    responseGen('assertion', 'newOrder', [], function(obj){
+      expect(obj.output).to.equal('Why don\'t you tell me how hungry you are');
     });
   });
 

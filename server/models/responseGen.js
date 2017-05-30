@@ -123,3 +123,5 @@ var responseObj = {
   },
 
 };
+
+module.exports.responseObj = responseObj;

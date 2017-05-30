@@ -63,6 +63,7 @@ module.exports.contextGen = function (message, expectedNextContext, cb) {
 
     var calculatedContext = '';
     if (contexts.includes(expectedNextContext)) {
+      console.log('included context is ', expectedNextContext);
       calculatedContext = expectedNextContext;
     } else if (contexts.includes('assertion')) {
       calculatedContext = expectedNextContext;
