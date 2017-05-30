@@ -57,6 +57,7 @@ module.exports = {
       toppings: (req, res) => {
       var tops = req.body;
       console.log('This is the toppings', tops);
+      
       models.robot.toppings(tops, (err,data)=>{
         if (err) {
           res
