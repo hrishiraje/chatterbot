@@ -1,4 +1,4 @@
-var responseGen = require('./responseGen');
+var responseGen = require('./responseGen').responseGen;
 var contextGen = require('./contextGen').contextGen;
 
 module.exports = {
@@ -20,9 +20,9 @@ module.exports = {
       // place API logic for dominoes order here
     },
     toppings: (tops, cb) => {
-      if(!tops) {
+      if (!tops) {
         cb(null, null);
-      } else{
+      } else {
         cb(null, tops);
       }
     }  

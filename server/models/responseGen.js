@@ -1,7 +1,7 @@
 //object coming from Contextgen giving calContext in string and expected next calContext punctiation
 const contextGen = require('./contextGen');
 
-module.exports = (calContext, expectedContext, array, cb) => {
+module.exports.responseGen = (calContext, expectedContext, array, cb) => {
 
   // console.log('received punctuation by responsegen ', punctuation);
   console.log('calcContext ', calContext);
