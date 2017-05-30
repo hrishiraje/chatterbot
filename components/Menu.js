@@ -17,10 +17,10 @@ const styles = StyleSheet.create({
     alignItems: 'stretch', 
     transform: [
       { 
-        translate: [-7, 3, -1] 
+        translate: [-0.5, 2, 0.866] 
       }, 
       { 
-        rotateY: 90 
+        rotateY: 0 
       }
     ]
   },
