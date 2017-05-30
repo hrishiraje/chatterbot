@@ -6,30 +6,6 @@ import BouncingText from './components/bouncingText';
 import RobotModel from './components/robotModel';
 import Menu from './components/Menu';
 
-const styles = StyleSheet.create({
-  currentText: {
-    border: 0.5,
-    borderRadius: 0.05, 
-    flex: 1, 
-    flexDirection: 'row', 
-    width: 1, 
-    alignItems: 'stretch', 
-    backgroundColor: 'lightblue', 
-    color: 'green', 
-    transform: [{ translate: [-1, 0, -2] }] 
-  },
-  historyText: {
-    border: 0.2,
-    borderRadius: 0.05, 
-    flex: 1, 
-    flexDirection: 'row', 
-    width: 1, 
-    alignItems: 'stretch', 
-    backgroundColor: 'grey', 
-    color: 'red', 
-    transform: [{ translate: [-1, -0.1, -2] }] 
-  }
-})
 
 const styles = StyleSheet.create({
   currentText: {
