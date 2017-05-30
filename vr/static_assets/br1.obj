@@ -1,6 +1,6 @@
 # Blender v2.67 (sub 1) OBJ File: 'BlackAndRedFloatingRobot.blend'
 # www.blender.org
-mtllib br1.mtl
+mtllib ./br1.mtl
 o Sphere.001
 v -1.000000 -0.136069 0.000000
 v -0.995185 -0.136069 0.098017

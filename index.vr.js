@@ -6,6 +6,31 @@ import BouncingText from './components/BouncingText';
 import RobotModel from './components/robotModel';
 import Menu from './components/Menu';
 
+const styles = StyleSheet.create({
+  currentText: {
+    border: 0.5,
+    borderRadius: 0.05, 
+    flex: 1, 
+    flexDirection: 'row', 
+    width: 1, 
+    alignItems: 'stretch', 
+    backgroundColor: 'lightblue', 
+    color: 'green', 
+    transform: [{ translate: [-1, 0, -2] }] 
+  },
+  historyText: {
+    border: 0.2,
+    borderRadius: 0.05, 
+    flex: 1, 
+    flexDirection: 'row', 
+    width: 1, 
+    alignItems: 'stretch', 
+    backgroundColor: 'grey', 
+    color: 'red', 
+    transform: [{ translate: [-1, -0.1, -2] }] 
+  }
+})
+
 class Basics extends Component {
   constructor(props) {
     super(props);
@@ -61,26 +86,16 @@ class Basics extends Component {
     return (
       <View onInput={this.handleInput.bind(this)}>
         <Pano source={asset('sky_platform.jpg')}></Pano>
-        {/*<View style={{ flex: 1, flexDirection: 'column', width: 2, alignItems: 'stretch', transform: [{translate: [0, 0, -2]}]}}>*/}
-          {/*<BouncingText style={{ color: 'red', transform: [{ translate: [0, 0, 0] }] }} theText={this.state.robotText}></BouncingText>*/}
-        {/*</View>*/}
         <RobotModel robotText={this.state.robotText}/>
+        <Menu />
         <View>
-          <Menu />
-        <View>
-          <Text style={{ backgroundColor: 'lightblue', color: 'red', transform: [{ translate: [-1, 0, -2] }] }}>{this.state.keyboardText}</Text>
-          <Text style={{ backgroundColor: 'grey', color: 'red', transform: [{ translate: [-1, -0.1, -2] }] }}>{this.state.messageText}</Text>
-        </View>
+          <Text style={styles.currentText}>{this.state.keyboardText}</Text>
+          <Text style={styles.historyText}>{this.state.messageText}</Text>
         </View>
       </View>
     );
   }
 }
-/*
-So whoever reviews this, I have three Text components. Each component refers to one of three things: robotText, keyboardText (input panel), 
-and messageText(to confirm that the inputted user text was captured after pressing enter). Then, under the handleEvent for "Enter", I made a
-this.setState call where I stored the inputted message, cleared the blank slate, and sent the inputted message via an axios.get. Then, within the axios 
-call I again used this.setState to set the new robot chat text and grab the new context to pass along to the server with the next client message
-*/
+
 AppRegistry.registerComponent('VRBasics', () => Basics);
 
