@@ -1,8 +1,6 @@
 import React from 'react';
-import {Animated, asset, Image, View, VrButton, Model, StyleSheet} from 'react-vr';
+import {Animated, asset, Image, View, VrButton, Model, StyleSheet, Text} from 'react-vr';
 import axios from 'axios';
-
-
 
 var styles = StyleSheet.create({
   toppingImage: {
@@ -12,7 +10,7 @@ var styles = StyleSheet.create({
     borderWidth: 0.05,
     margin: 0.2
   },
-  container1: {
+  container: {
     flex: 1,
     flexDirection: 'row', 
     width: 1, 
@@ -20,81 +18,29 @@ var styles = StyleSheet.create({
     alignItems: 'stretch',
     transform: [
       { 
-        translate: [-3, 3, -3]
+        translate: [-3, 4, -3]
       }, 
       { 
         rotateX: 45
       }
     ]
   },
-  container2: {
-    
-    flexDirection: 'row',
-    width: 2,
-    alignItems: 'stretch',
-    transform: [
-      {
-        translate: [2, 4, -3]
-      },
-      {
-        rotateX: 0
-      }
-    ]
+  text: {
+    fontSize: 0.2,
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-around'
   },
-  container3: {
-    
-    flexDirection: 'row',
-    width: 2,
-    alignItems: 'stretch',
+  menuButton: {
+    backgroundColor: 'green',
+    borderRadius: 0.25,
+    width: 0.5,
+    height: 0.5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 0.01,
     transform: [
-      {
-        translate: [0, 4, -3]
-      },
-      {
-        rotateX: 0
-      }
-    ]
-  },
-  container4: {
-    
-    flexDirection: 'row',
-    width: 2,
-    alignItems: 'stretch',
-    transform: [
-      {
-        translate: [-2, 4, -3]
-      },
-      {
-        rotateX: 0
-      }
-    ]
-  },
-  container5: {
-    
-    flexDirection: 'row',
-    width: 2,
-    alignItems: 'stretch',
-    transform: [
-      {
-        translate: [-4, 4, -3]
-      },
-      {
-        rotateX: 0
-      }
-    ]
-  },
-  container6: {
-    
-    flexDirection: 'row',
-    width: 2,
-    alignItems: 'stretch',
-    transform: [
-      {
-        translate: [-6, 4, -3]
-      },
-      {
-        rotateX: 0
-      }
+      { translate: [-3, 3, -3] }
     ]
   }
 })
@@ -166,53 +112,57 @@ class Menu extends React.Component {
 
   render() {
     return (
-      <View style={styles.container1}>
-        <View>
-          <VrButton onClick={()=>this.setState({pepperoni:{selected: !this.state.pepperoni.selected, code: this.state.pepperoni.code}})}>
-            <Animated.Image                         // Base: Image, Text, View
-              source={{uri: 'http://i.imgur.com/ISykk1n.jpg'}}
-              style={[ styles.toppingImage,  {transform: [ {scale: this.state.bounceValue} ]}]}
-            />
-          </VrButton>
-        </View>
-        <View>
-          <VrButton onClick={()=>this.setState({italianSausage:{selected: !this.state.italianSauage.selected, code: this.state.italianSausage.code}})}>
-            <Animated.Image                         // Base: Image, Text, View
-              source={{uri: 'http://i.imgur.com/8fBPAY7.jpg'}}
-              style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
-            />
-          </VrButton>
-        </View>
-        <View>
-          <VrButton onClick={()=>this.setState({beef:{selected: !this.state.beef.selected, code: this.state.beef.code}})}>
-            <Animated.Image                         // Base: Image, Text, View
-              source={{uri: 'http://3.bp.blogspot.com/-IY5KYLYaTHY/UukyyqLZv8I/AAAAAAAGe9I/MHayfAqSI9g/s1600/DOMINO%27S+PIZZA+Medium+Beef+12+Inch+1+Lb.+7+Oz.+Pie,+Domino%27s+Pizza+Delivery+Take+Out+Store+Restaurant+Medium+Beef+Pizza.JPG'}}
-              style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
-            />
-          </VrButton>
-        </View>
-        <View>
-          <VrButton onClick={()=>this.setState({ham:{selected: !this.state.ham.selected, code: this.state.ham.code}})}>
-            <Animated.Image                         // Base: Image, Text, View
-              source={{uri: 'https://knightstemplarinternational.com/wp-content/uploads/2016/08/Ham-Pizza-2.jpg'}}
-              style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
-            />
-          </VrButton>
-        </View>
-        <View>
-          <VrButton onClick={()=>this.setState({bacon:{selected: !this.state.bacon.selected, code: this.state.bacon.code}})}>
-            <Animated.Image                         // Base: Image, Text, View
-              source={{uri: 'https://knightstemplarinternational.com/wp-content/uploads/2017/03/Bacon.jpg'}}
-              style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
-            />
-          </VrButton>
-        </View>
+      <View style={styles.container}>
+        <VrButton>
+          <Text style={styles.text}>
+            Pepperoni
+          </Text>
+          <Animated.Image                         // Base: Image, Text, View
+            source={{uri: 'http://i.imgur.com/ISykk1n.jpg'}}
+            style={[ styles.toppingImage,  {transform: [ {scale: this.state.bounceValue} ]}]}
+          />
+        </VrButton>
+        <VrButton onClick={()=>this.setState({italianSausage:{selected: !this.state.italianSauage.selected, code: this.state.italianSausage.code}})}>
+          <Text style={styles.text}>
+            Italian Sausage
+          </Text>
+          <Animated.Image                         // Base: Image, Text, View
+            source={{uri: 'http://i.imgur.com/8fBPAY7.jpg'}}
+            style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
+          />
+        </VrButton>
+        <VrButton onClick={()=>this.setState({beef:{selected: !this.state.beef.selected, code: this.state.beef.code}})}>
+          <Text style={styles.text}>
+            Beef
+          </Text>
+          <Animated.Image                         // Base: Image, Text, View
+            source={{uri: 'http://3.bp.blogspot.com/-IY5KYLYaTHY/UukyyqLZv8I/AAAAAAAGe9I/MHayfAqSI9g/s1600/DOMINO%27S+PIZZA+Medium+Beef+12+Inch+1+Lb.+7+Oz.+Pie,+Domino%27s+Pizza+Delivery+Take+Out+Store+Restaurant+Medium+Beef+Pizza.JPG'}}
+            style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
+          />
+        </VrButton>
+        <VrButton onClick={()=>this.setState({ham:{selected: !this.state.ham.selected, code: this.state.ham.code}})}>
+          <Text style={styles.text}>
+            Ham
+          </Text>
+          <Animated.Image                         // Base: Image, Text, View
+            source={{uri: 'https://knightstemplarinternational.com/wp-content/uploads/2016/08/Ham-Pizza-2.jpg'}}
+            style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
+          />
+        </VrButton>
+        <VrButton onClick={()=>this.setState({bacon:{selected: !this.state.bacon.selected, code: this.state.bacon.code}})}>
+          <Text style={styles.text}>
+            Bacon
+          </Text>
+          <Animated.Image                         // Base: Image, Text, View
+            source={{uri: 'https://knightstemplarinternational.com/wp-content/uploads/2017/03/Bacon.jpg'}}
+            style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
+          />
+        </VrButton>
         <View>
           <VrButton onClick={()=>this.submit()}>
-            <Animated.Image                         // Base: Image, Text, View
-              source={{uri: 'http://i.imgur.com/t1dfqfF.png'}}
-              style={[styles.toppingImage, { transform: [{ scale: this.state.bounceValue }] }]}
-            />
+            <Text style={styles.menuButton}>
+              Submit
+            </Text>
           </VrButton>
         </View>
       </View>
