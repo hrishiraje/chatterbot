@@ -124,7 +124,7 @@ class Basics extends Component {
         {this.state.playSound ? 
         ( <Sound source={asset('robo.mp3')} /> )
         : (
-          <Sound source={asset('robo.mp3')} />
+          <Sound source={asset('robo2.mp3')} />
         )}
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
