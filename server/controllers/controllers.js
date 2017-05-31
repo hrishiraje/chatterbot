@@ -3,8 +3,8 @@
 // var myPhone = process.env.TWILIO_PHONE_NUMBER;
 var models = require('../models/models.js');
 var url = require('url');
-var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID,
-  process.env.TWILIO_AUTH_TOKEN);
+// var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID,
+//   process.env.TWILIO_AUTH_TOKEN);
 
 module.exports = {
 
@@ -61,16 +61,16 @@ module.exports = {
       });
     },
 
-    sms: function(req, res) {
-      client.messages.create({
-      from: process.env.TWILIO_PHONE_NUMBER,
-      to: '+1 206-604-4935',
-      body: "Pizza Party test message!"
-      }, function(err, message) {
-  if(err) {
-    console.error(err.message);
-  } else console.log('Sent a text ... hopefully!');
-});
-    }
+//     sms: function(req, res) {
+//       client.messages.create({
+//       from: process.env.TWILIO_PHONE_NUMBER,
+//       to: '+1 206-604-4935',
+//       body: "Pizza Party test message!"
+//       }, function(err, message) {
+//   if(err) {
+//     console.error(err.message);
+//   } else console.log('Sent a text ... hopefully!');
+// });
+//     }
   }
 };
