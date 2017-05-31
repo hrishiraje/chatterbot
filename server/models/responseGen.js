@@ -18,33 +18,33 @@ module.exports.responseGen = (calContext, expectedContext, array, cb) => {
     obj.toppings = [
       {
         name: 'Pepperoni',
-        image: '',
-        code: ''
+        image: 'http://goldenagecheese.com/blog/wp-content/uploads/2015/05/Turkey-Pepperoni1.jpg',
+        code: 'P'
       },
       {
-        name: 'Cheese',
-        image: '',
-        code: ''
+        name: 'Cheddar Cheese',
+        image: 'http://www.holypine.com/wp-content/uploads/2015/10/Cheddar-Cheese-600x600.jpg',
+        code: 'E'
       },
       {
-        name: 'Olives',
-        image: '',
-        code: ''
+        name: 'Black Olives',
+        image: 'https://i.stack.imgur.com/n32HW.jpg',
+        code: 'R'
       },
       {
-        name: 'Green Bell peppers',
-        image: '',
-        code: ''
+        name: 'Green Peppers',
+        image: 'https://www.ussupplyhouse.com/wp-content/uploads/2017/03/organic-green-pepper.jpg',
+        code: 'G'
       },
       {
         name: 'Onions',
-        image: '',
-        code: ''
+        image: 'https://ichef-1.bbci.co.uk/news/660/media/images/80896000/jpg/_80896768_red-onion-think624.jpg',
+        code: 'O'
       },
       {
-        name: 'Sausage',
-        image: '',
-        code: ''
+        name: 'Italian Sausage',
+        image: 'https://d39hcmrh8xztgk.cloudfront.net/product_product-large_phpPTgCX3.jpg',
+        code: 'S'
       }];
   } else if (calContext === 'peopleCount') {
     obj.output = responseObj[responseObj[expectedContext].next].statement + array[0] + '. Just say \'abracadabra\' when you are ready to continue';

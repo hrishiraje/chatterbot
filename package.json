@@ -8,7 +8,7 @@
     "bundle": "node node_modules/react-vr/scripts/bundle.js",
     "open": "node -e \"require('xopen')('http://localhost:8081/vr/')\"",
     "devtools": "react-devtools",
-    "test": "jest",
+    "test": "mocha",
     "stest": "mocha"
   },
   "repository": {
