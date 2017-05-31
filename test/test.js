@@ -10,7 +10,7 @@ const responseObj = require('../server/models/responseGen').responseObj;
 
 chai.use(chaiHttp);
 
-describe('server', function() {
+xdescribe('server', function() {
 
   it('should respond to GET requests for "/" 200 status code', (done) => {
     chai.request('http://127.0.0.1:9000')

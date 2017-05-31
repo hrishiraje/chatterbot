@@ -12,7 +12,7 @@ module.exports.punctuation = function (wordArray) {
   question = ['why', 'when', 'where', '?', 'can'],
     wordArray.forEach(function (word) {
       console.log(word);
-      if (question.includes(word)) {
+      if (question.indexOf(word) >= 0) {
         console.log('found a question');
         found = true;
       }
@@ -62,10 +62,10 @@ module.exports.contextGen = function (message, expectedNextContext, cb) {
   } else if (contexts.length > 1) {
 
     var calculatedContext = '';
-    if (contexts.includes(expectedNextContext)) {
+    if (contexts.indexOf(expectedNextContext) >= 0) {
       console.log('included context is ', expectedNextContext);
       calculatedContext = expectedNextContext;
-    } else if (contexts.includes('assertion')) {
+    } else if (contexts.indexOf('assertion') >= 0) {
       calculatedContext = expectedNextContext;
     } else {
       calculatedContext = null;
