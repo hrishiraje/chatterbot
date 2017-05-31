@@ -4,7 +4,16 @@ import axios from 'axios';
 
 import Topping from './topping';
 
-const styles = StyleSheet.create({
+var locationArray = [];
+var locationFinder = function() {
+  for (var i = 0; i < 180; i+=30) {
+    var x = 2 * Math.cos(i * Math.PI/180);
+    var z = 2 * Math.sin(i * Math.PI/180);
+    locationArray.push([x,2,z]);
+  }
+}
+
+var styles = StyleSheet.create({
   toppingImage: {
     width: 1,
     height: 1,
@@ -12,7 +21,6 @@ const styles = StyleSheet.create({
     borderWidth: 0.02
   }
 })
-
 
 class Menu2 extends React.Component {
   constructor(props) {
@@ -26,14 +34,23 @@ class Menu2 extends React.Component {
     this.props.submitOrder(this.state.selectedToppings);
   }
 
-  renderToppings() {
-
+  selectedToppingsList(toppingCode) {
+    if (this.state.toppings.includes(toppingCode)) {
+      var index = this.state.toppings.indexOf(toppingCode);
+      this.setState({
+        selectedToppings: this.state.toppings.splice(index, 1)
+      });
+    } else {
+      this.setState({
+        selectedToppings: this.state.selectedToppings.push(toppingCode)
+      });
+    } 
   }
 
   render() {
     return (
       <View>
-        {this.props.toppings.map( (topping) => { return ( <Topping topping={topping} selectedTopping={}/>) } )}
+        {this.props.toppings.map((topping) => { return (<Topping key={} topping={topping} location={} selectedTopping={this.selectedToppingsList.bind(this)}/>) } )}
       </View>
     );
   }
