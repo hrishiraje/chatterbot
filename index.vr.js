@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box, VideoPano } from 'react-vr';
+import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box, VideoPano, Sound } from 'react-vr';
 import axios from 'axios';
 
 import BouncingText from './components/bouncingText';
@@ -42,7 +42,8 @@ class Basics extends Component {
       messageText: '',
       context: '',
       pizzaCode: '',
-      toppings: []
+      toppings: [],
+      playSound: true
     }
   }
 
@@ -72,7 +73,8 @@ class Basics extends Component {
               console.log('TOPPINGS', response.data.toppings);
               me.setState({
                 robotText: response.data.output,
-                context: response.data.nextContext
+                context: response.data.nextContext,
+                playSound: !me.state.playSound
               });
               if (response.data.pizzaCode !== undefined) {
                 me.setState({
@@ -119,6 +121,11 @@ class Basics extends Component {
       <View onInput={this.handleInput.bind(this)}>
         <Pano source={asset('sky_platform.jpg')}></Pano>
         <RobotModel robotText={this.state.robotText}/>
+        {this.state.playSound ? 
+        ( <Sound source={asset('robo.mp3')} /> )
+        : (
+          <Sound source={asset('robo.mp3')} />
+        )}
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
           <Text style={styles.historyText}>{this.state.messageText}</Text>
