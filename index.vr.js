@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box, VideoPano } from 'react-vr';
 import axios from 'axios';
 
-import BouncingText from './components/BouncingText';
+import BouncingText from './components/bouncingText';
 import RobotModel from './components/robotModel';
 import TopplingList from './components/toppingList';
 
