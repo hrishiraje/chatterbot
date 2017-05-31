@@ -1,6 +1,6 @@
 var responseGen = require('./responseGen').responseGen;
 var contextGen = require('./contextGen').contextGen;
-var orderPizza = require('../pizza/pizzaOrdering');
+var orderPizza = require('../pizza/pizzaOrdering').responseGen;
 
 module.exports = {
   robot: {
@@ -19,7 +19,13 @@ module.exports = {
     },
     placeOrder: function(order, cb) {
       // place API logic for dominoes order here
-      orderPizza(order);
+      orderPizza(order, function(error, data){
+        if(error){
+          cb(error, null);
+        } else {
+          cb(null, data);
+        }
+      });
     }
   }
 };

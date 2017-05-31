@@ -1,6 +1,6 @@
 var pizzapi = require('pizzapi');
 var myStore = new pizzapi.Store({});
-module.exports= ()=> {
+module.exports= (cb)=> {
   pizzapi.Util.findNearbyStores(
   '944 Market Street, 7th floor, San Francisco, CA 94102',
   'Delivery',
@@ -67,10 +67,18 @@ module.exports= ()=> {
           console.log("Order placed!", result);
       }
   );
-  pizzapi.Track.byPhone(
-      5595457498,
+  // pizzapi.Track.byPhone(
+  //     5595457498,
+  //     function(pizzaData){
+  //         console.log(pizzaData);
+  //     }
+  // );
+
+  pizzapi.Track.byId(
+      123456, //gotten from placing the order above
+     
       function(pizzaData){
-          console.log(pizzaData);
+          cb(null, pizzaData);
       }
   );
   }

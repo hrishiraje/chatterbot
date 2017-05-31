@@ -35,3 +35,4 @@ public/bundle.js.map
 *.js.meta
 node_modules/
 build/
+.env
