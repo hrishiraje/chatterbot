@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box } from 'react-vr';
+import { AppRegistry, asset, Pano, View, Text, StyleSheet, Box, VideoPano } from 'react-vr';
 import axios from 'axios';
 
 import BouncingText from './components/bouncingText';
 import RobotModel from './components/robotModel';
-import Menu from './components/Menu';
+import TopplingList from './components/toppingList';
 
 
 const styles = StyleSheet.create({
@@ -69,7 +69,7 @@ class Basics extends Component {
           var modifiedMessage = this.state.messageText.replace(/\>\s/gi, '+');
           var urlMessage = '?message='+modifiedMessage+'&context='+this.state.context;
           axios.get(`/api/response${urlMessage}`).then(function(response) {
-              console.log('PIZZA CODE', response.data.pizzaCode);
+              console.log('TOPPINGS', response.data.toppings);
               me.setState({
                 robotText: response.data.output,
                 context: response.data.nextContext
@@ -95,9 +95,11 @@ class Basics extends Component {
   }
 
   placeOrder(toppings) {
+    var me = this;
     var orderData = {};
     orderData.pizzaCode = this.state.pizzaCode;
     orderData.toppings = toppings;
+    console.log('ORDER DATA TOPPINGS', orderData.toppings);
     axios.post('/api/placeOrder', orderData)
       .then(function (response) {
         console.log(response);
@@ -105,18 +107,24 @@ class Basics extends Component {
       .catch(function (error) {
         console.log(error);
       });
+      me.setState({
+        toppings: [],
+        pizzaCode: '',
+        robotText: 'Great! Your pizza should be on its way! I\'ll keep you informed with updates'
+      });
   }
 
   render() {
     return (
       <View onInput={this.handleInput.bind(this)}>
-        <Pano source={asset('sky_platform.jpg')}></Pano>
+        {/*<Pano source={asset('sky_platform.jpg')}></Pano>*/}
+        <VideoPano source={asset('lol.mp4')} loop={true} />
         <RobotModel robotText={this.state.robotText}/>
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
           <Text style={styles.historyText}>{this.state.messageText}</Text>
         </View>
-        <Menu toppings={this.state.toppings} submitOrder={this.placeOrder.bind(this)}/>
+        <TopplingList toppings={this.state.toppings} submitOrder={this.placeOrder.bind(this)}/>
       </View>
     );
   }
