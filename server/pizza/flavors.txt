@@ -1,0 +1,99 @@
+{ Pasta: 
+   { PASTA: 
+      { Code: 'PASTA',
+        Description: 'Pasta served in a dish.',
+        Local: false,
+        Name: 'Dish',
+        SortSeq: '01' },
+     BBOWL: 
+      { Code: 'BBOWL',
+        Description: 'Pasta served in a bread bowl and then baked to perfection.',
+        Local: false,
+        Name: 'BreadBowl',
+        SortSeq: '02' } },
+  Pizza: 
+   { HANDTOSS: 
+      { Code: 'HANDTOSS',
+        Description: 'Garlic-seasoned crust with a rich, buttery taste.',
+        Local: false,
+        Name: 'Hand Tossed',
+        SortSeq: '01' },
+     NPAN: 
+      { Code: 'NPAN',
+        Description: 'Two layers of cheese, toppings to the edge, baked in a pan for a crust that is golden and crispy with a buttery taste.',
+        Local: false,
+        Name: 'Handmade Pan',
+        SortSeq: '02' },
+     THIN: 
+      { Code: 'THIN',
+        Description: 'Thin enough for the optimum crispy to crunchy ratio.',
+        Local: false,
+        Name: 'Crunchy Thin Crust',
+        SortSeq: '03' },
+     BK: 
+      { Code: 'BK',
+        Description: 'Hand stretched to be big, thin and perfectly foldable.',
+        Local: false,
+        Name: 'Brooklyn Style',
+        SortSeq: '06' },
+     GLUTENF: 
+      { Code: 'GLUTENF',
+        Description: 'Domino\'s pizza made with a Gluten Free Crust.',
+        Local: false,
+        Name: 'Gluten Free Crust',
+        SortSeq: '09' } },
+  Wings: 
+   { BACTOM: 
+      { Code: 'BACTOM',
+        Description: 'Tender bites of lightly breaded, 100% whole breast white meat chicken, topped with garlic parmesan white sauce, a blend of cheese made with mozzarella and cheddar, crispy bacon and tomato.',
+        Local: false,
+        Name: 'Specialty Chicken – Crispy Bacon & Tomato',
+        SortSeq: '01' },
+     HOTBUFF: 
+      { Code: 'HOTBUFF',
+        Description: 'Tender bites of lightly breaded, 100% whole breast white meat chicken, topped with classic hot buffalo sauce, ranch, a blend of cheese made with mozzarella and cheddar, and feta.',
+        Local: false,
+        Name: 'Specialty Chicken – Classic Hot Buffalo',
+        SortSeq: '02' },
+     SPCYJP: 
+      { Code: 'SPCYJP',
+        Description: 'Tender bites of lightly breaded, 100% whole breast white meat chicken, topped with sweet and spicy mango-habanero sauce, a blend of cheese made with mozzarella and cheddar, jalapeno and pineapple.',
+        Local: false,
+        Name: 'Specialty Chicken – Spicy Jalapeno - Pineapple',
+        SortSeq: '03' },
+     BBQBAC: 
+      { Code: 'BBQBAC',
+        Description: 'Tender bites of lightly breaded, 100% whole breast white meat chicken, topped with sweet and smoky BBQ sauce, a blend of cheese made with mozzarella and cheddar, and crispy bacon.',
+        Local: false,
+        Name: 'Specialty Chicken – Sweet BBQ Bacon',
+        SortSeq: '04' },
+     BCHICK: 
+      { Code: 'BCHICK',
+        Description: 'Lightly breaded with savory herbs, made with 100% whole white breast meat. Customize with your choice of dipping sauce: Sweet Mango Habanero, BBQ, Kicker Hot Sauce, Blue Cheese or Ranch.',
+        Local: false,
+        Name: 'Boneless Chicken',
+        SortSeq: '05' },
+     HOTWINGS: 
+      { Code: 'HOTWINGS',
+        Description: 'Big, juicy chicken wings sauced with Hot Wing Sauce.',
+        Local: false,
+        Name: 'Hot Wings',
+        SortSeq: '07' },
+     SMANG: 
+      { Code: 'SMANG',
+        Description: 'A perfect blend of sweet and spicy, Sweet Mango Habanero sauce coats these big and juicy traditional wings.',
+        Local: false,
+        Name: 'Sweet Mango Habanero Wings',
+        SortSeq: '09' },
+     BBQW: 
+      { Code: 'BBQW',
+        Description: 'Big, juicy chicken wings sauced with BBQ Sauce.',
+        Local: false,
+        Name: 'BBQ Wings',
+        SortSeq: '10' },
+     PLNWINGS: 
+      { Code: 'PLNWINGS',
+        Description: 'Marinated and oven-baked and then sauced with your choice of Hot, Sweet Mango Habanero or BBQ sauce.',
+        Local: false,
+        Name: 'Plain Wings',
+        SortSeq: '11' } } }

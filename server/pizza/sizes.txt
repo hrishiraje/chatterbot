@@ -1,0 +1,108 @@
+{ Bread: 
+   { BRD8: 
+      { Code: 'BRD8',
+        Description: '',
+        Local: false,
+        Name: '8-Piece',
+        SortSeq: '02' },
+     BRD16: 
+      { Code: 'BRD16',
+        Description: '',
+        Local: false,
+        Name: '16-Piece',
+        SortSeq: '06' },
+     BRD32: 
+      { Code: 'BRD32',
+        Description: '',
+        Local: false,
+        Name: '32-Piece',
+        SortSeq: '07' } },
+  CHARGES: 
+   { CHGONE: 
+      { Code: 'CHGONE',
+        Description: '',
+        Local: false,
+        Name: 'Each',
+        SortSeq: '01' } },
+  Dessert: 
+   { DRT2: 
+      { Code: 'DRT2',
+        Description: '',
+        Local: false,
+        Name: '2-Piece',
+        SortSeq: '02' },
+     DRT8: 
+      { Code: 'DRT8',
+        Description: '',
+        Local: false,
+        Name: '8-Piece',
+        SortSeq: '05' },
+     '9PC': 
+      { Code: '9PC',
+        Description: '',
+        Local: false,
+        Name: '9-Piece',
+        SortSeq: '06' } },
+  Drinks: 
+   { '2LTB': 
+      { Code: '2LTB',
+        Description: '',
+        Local: false,
+        Name: '2-Liter Bottle',
+        SortSeq: '01' },
+     '20OZB': 
+      { Code: '20OZB',
+        Description: '',
+        Local: false,
+        Name: '20oz Bottle',
+        SortSeq: '02' } },
+  Pizza: 
+   { '10': 
+      { Code: '10',
+        Description: '',
+        Local: false,
+        Name: 'Small (10")',
+        SortSeq: '03' },
+     '12': 
+      { Code: '12',
+        Description: '',
+        Local: false,
+        Name: 'Medium (12")',
+        SortSeq: '04' },
+     '14': 
+      { Code: '14',
+        Description: '',
+        Local: false,
+        Name: 'Large (14")',
+        SortSeq: '05' },
+     '16': 
+      { Code: '16',
+        Description: '',
+        Local: true,
+        Name: 'X-Large (16")',
+        SortSeq: '06' } },
+  Wings: 
+   { '8PCW': 
+      { Code: '8PCW',
+        Description: '',
+        Local: false,
+        Name: '8-Piece',
+        SortSeq: '12' },
+     '14PCW': 
+      { Code: '14PCW',
+        Description: '',
+        Local: false,
+        Name: '14-Piece',
+        SortSeq: '13' },
+     '40PCW': 
+      { Code: '40PCW',
+        Description: '',
+        Local: false,
+        Name: '40-Piece',
+        SortSeq: '14' },
+     '12PCB': 
+      { Code: '12PCB',
+        Description: '',
+        Local: false,
+        Name: '12-Piece Bites',
+        SortSeq: '15' } } }

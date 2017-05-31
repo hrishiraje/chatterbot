@@ -53,21 +53,6 @@ module.exports = {
             .send({output: 'we ordered it fam'});
         }
       });
-    },
-      toppings: (req, res) => {
-      var tops = req.body;
-      console.log('This is the toppings', tops);
-      models.robot.toppings(tops, (err,data)=>{
-        if (err) {
-          res
-            .status(404)
-            .send(err);
-        } else {
-          res
-            .status(200)
-            .send(console.log("WOOT", tops));
-        }
-      })
     }
   }
 };

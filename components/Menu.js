@@ -155,7 +155,9 @@ class Menu extends React.Component {
         toppings.push(this.state[key].code)
       }
     }
+
     this.props.submitOrder(toppings);
+
   }
 
   renderToppings() {

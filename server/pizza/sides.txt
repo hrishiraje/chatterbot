@@ -1,0 +1,81 @@
+{ Bread: 
+   { SIDMAR: 
+      { Availability: [],
+        Code: 'SIDMAR',
+        Description: 'A sweet tomato sauce blended with garlic, basil and oregano',
+        Local: false,
+        Name: 'Marinara',
+        Tags: { Side: true } },
+     SIDGAR: 
+      { Availability: [],
+        Code: 'SIDGAR',
+        Description: 'A buttery garlic sauce',
+        Local: true,
+        Name: 'Garlic Dipping Sauce',
+        Tags: { Side: true } } },
+  Dessert: 
+   { SIDICE: 
+      { Availability: [],
+        Code: 'SIDICE',
+        Description: '',
+        Local: false,
+        Name: 'Icing',
+        Tags: { Side: true } } },
+  GSalad: 
+   { RANCHPK: 
+      { Availability: [],
+        Code: 'RANCHPK',
+        Description: 'A flavorful creamy dressing with touches of buttermilk and garlic.',
+        Local: false,
+        Name: 'Ranch',
+        Tags: { Side: true } },
+     CAESAR: 
+      { Availability: [],
+        Code: 'CAESAR',
+        Description: 'A subtle combination of Parmesan cheese, olive oil, lemon, garlic, onion and black pepper.',
+        Local: false,
+        Name: 'Caesar',
+        Tags: { Side: true } },
+     BALVIN: 
+      { Availability: [],
+        Code: 'BALVIN',
+        Description: 'A light dressing with a blend of balsamic vinegar, oil and garlic.',
+        Local: false,
+        Name: 'Balsamic',
+        Tags: { Side: true } } },
+  Wings: 
+   { HOTCUP: 
+      { Availability: [],
+        Code: 'HOTCUP',
+        Description: 'Domino\'s own spicy Buffalo sauce',
+        Local: false,
+        Name: 'Kicker Hot Sauce',
+        Tags: { Side: true } },
+     SMHAB: 
+      { Availability: [],
+        Code: 'SMHAB',
+        Description: 'A perfect blend of sweet and spicy in one sauce',
+        Local: false,
+        Name: 'Sweet Mango Habanero Sauce',
+        Tags: { Side: true, EffectiveOn: '2010-01-01' } },
+     BBQC: 
+      { Availability: [],
+        Code: 'BBQC',
+        Description: 'A smoky BBQ sauce with bold flavor',
+        Local: false,
+        Name: 'BBQ Sauce',
+        Tags: { Side: true, EffectiveOn: '2010-01-01' } },
+     SIDRAN: 
+      { Availability: [],
+        Code: 'SIDRAN',
+        Description: 'A creamy buttermilk ranch dressing with hints of garlic and onion',
+        Local: false,
+        Name: 'Ranch',
+        Tags: { Side: true } },
+     Bd: 
+      { Availability: [],
+        Code: 'Bd',
+        Description: 'A creamy dressing with bits of aged blue cheese',
+        Local: false,
+        Name: 'Blue Cheese',
+        Tags: { Side: true } } } }
