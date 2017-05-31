@@ -1,7 +1,13 @@
+// var clientSid = process.env.TWILIO_ACCOUNT_SID;
+// var token = process.env.TWILIO_AUTH_TOKEN;
+// var myPhone = process.env.TWILIO_PHONE_NUMBER;
 var models = require('../models/models.js');
 var url = require('url');
+var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID,
+  process.env.TWILIO_AUTH_TOKEN);
 
 module.exports = {
+
   robot: {
     responseGet: function(req, res) {
       var queryParameter = url.parse(req.url, true).query;
@@ -53,6 +59,18 @@ module.exports = {
             .send({output: 'we ordered it fam'});
         }
       });
+    },
+
+    sms: function(req, res) {
+      client.messages.create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: '+1 206-604-4935',
+      body: "Pizza Party test message!"
+      }, function(err, message) {
+  if(err) {
+    console.error(err.message);
+  } else console.log('Sent a text ... hopefully!');
+});
     }
   }
 };
