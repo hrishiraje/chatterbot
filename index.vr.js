@@ -117,8 +117,7 @@ class Basics extends Component {
   render() {
     return (
       <View onInput={this.handleInput.bind(this)}>
-        {/*<Pano source={asset('sky_platform.jpg')}></Pano>*/}
-        <VideoPano source={asset('lol.mp4')} loop={true} />
+        <Pano source={asset('sky_platform.jpg')}></Pano>
         <RobotModel robotText={this.state.robotText}/>
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
