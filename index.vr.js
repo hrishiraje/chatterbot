@@ -57,6 +57,12 @@ class Basics extends Component {
     });
   }
 
+  componentDidUpdate() {
+    this.setState({
+      robotText : asset('typing.gif')
+    })
+  }
+
   handleInput(e){
     var me = this;
     if (e.nativeEvent.inputEvent.eventType === 'keyup')
