@@ -76,38 +76,40 @@ class Basics extends Component {
           var urlMessage = '?message='+modifiedMessage+'&context='+this.state.context;
           axios.get(`/api/response${urlMessage}`).then(function(response) {
               console.log('TOPPINGS', response.data.toppings);
-              me.setState({
-                robotText: response.data.output,
-                context: response.data.nextContext,
-                playSound: !me.state.playSound
-              });
-              if (response.data.pizzaCode !== undefined) {
+              setTimeout(() => {
                 me.setState({
-                  pizzaCode: response.data.pizzaCode
+                  robotText: response.data.output,
+                  context: response.data.nextContext,
+                  playSound: !me.state.playSound,
+                  robotTyping: false
                 });
-              }
-              if (response.data.toppings !== undefined) {
-                setTimeout(() => {
+                if (response.data.pizzaCode !== undefined) {
+                  me.setState({
+                    pizzaCode: response.data.pizzaCode
+                  });
+                }
+                if (response.data.toppings !== undefined) {
                   me.setState({
                     robotText: response.data.output,
                     context: response.data.nextContext,
                     robotTyping: false
                   });
-                  if (response.data.pizzaCode !== undefined) {
-                    me.setState({
-                      pizzaCode: response.data.pizzaCode,
-                      robotTyping: false
-                    });
-                  }
-                  if (response.data.toppings !== undefined) {
-                    me.setState({
-                      toppings: response.data.toppings,
-                      robotTyping: false
-                    });
-                  }
-                }, 2500);
-              }
-          });
+                }
+                if (response.data.pizzaCode !== undefined) {
+                  me.setState({
+                    pizzaCode: response.data.pizzaCode,
+                    robotTyping: false
+                  });
+                }
+                if (response.data.toppings !== undefined) {
+                  me.setState({
+                    toppings: response.data.toppings,
+                    robotTyping: false
+                  });
+                }
+              }, 2500);
+            }
+          );
       });
     } else {
       if(e.nativeEvent.inputEvent.key !== 'Shift')
@@ -141,7 +143,6 @@ class Basics extends Component {
     return (
       <View onInput={this.handleInput.bind(this)}>
         <Pano source={asset('sky_platform.jpg')}></Pano>
-        <RobotModel robotText={this.state.robotText}/>
         {this.state.playSound ? 
         ( <Sound source={asset('robo.mp3')} /> )
         : (

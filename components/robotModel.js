@@ -4,44 +4,42 @@ import { View, Model, asset, Animated, Image } from 'react-vr';
 import BouncingText from './bouncingText';
 import Typing from './typing';
 
-const AnimatedModel = Animated.createAnimatedComponent(Model);
+var AnimatedModel = Animated.createAnimatedComponent(Model);
+
 class RobotModel extends Component {
   constructor(props) {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0.5),
-       hoverValue: new Animated.Value(-0.3),
-       rotate: function (){
-   Animated.sequence([
-    Animated.timing(this._animatedValue, {
-        toValue: -.3,
-        duration: 1000
-    }),
-    Animated.timing(this._animatedValue,{
-      toValue: -.7,
-      duration: 1000
-    })
-    ]).start((event)=> {if(event.finished){this.state.rotate()}});
-   },
-
-    };
+      hoverValue: new Animated.Value(-0.3)
+    }
   }
-
-componentWillMount() {
+  
+  componentWillMount() {
     this._animatedValue = new Animated.Value(-.7);
   }
+
   componentDidMount() {
-   this.state.rotate()
+    Animated.sequence([
+      Animated.timing(this._animatedValue, {
+        toValue: -.3,
+        duration: 1000
+      }),
+      Animated.timing(this._animatedValue, {
+        toValue: -.7,
+        duration: 1000
+      })
+    ]).start();
   }
+
   render() {
-     var rotate = this._animatedValue.interpolate({
-        inputRange: [0, 100],
+    var rotate = this._animatedValue.interpolate({
+      inputRange: [0, 100],
       outputRange: ['0deg', '360deg']
     });
 
     return (
       <View>        
-        {/*<BouncingText theText={this.props.robotText} rotate={this.state.rotate} />*/}
         {this.props.robotTyping === true ? 
           <Typing />
         :
@@ -52,6 +50,8 @@ componentWillMount() {
       </View>
     );
   }
+
 }
+
 
 export default RobotModel;
