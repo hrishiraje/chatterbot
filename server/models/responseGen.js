@@ -18,32 +18,32 @@ module.exports.responseGen = (calContext, expectedContext, array, cb) => {
     obj.toppings = [
       {
         name: 'Pepperoni',
-        image: 'http://goldenagecheese.com/blog/wp-content/uploads/2015/05/Turkey-Pepperoni1.jpg',
+        image: 'pepperoni.jpg',
         code: 'P'
       },
       {
         name: 'Cheddar Cheese',
-        image: 'http://www.holypine.com/wp-content/uploads/2015/10/Cheddar-Cheese-600x600.jpg',
+        image: 'cheddar_cheese.jpg',
         code: 'E'
       },
       {
         name: 'Black Olives',
-        image: 'https://i.stack.imgur.com/n32HW.jpg',
+        image: 'black_olives.jpg',
         code: 'R'
       },
       {
         name: 'Green Peppers',
-        image: 'https://www.ussupplyhouse.com/wp-content/uploads/2017/03/organic-green-pepper.jpg',
+        image: 'green_peppers.jpg',
         code: 'G'
       },
       {
         name: 'Onions',
-        image: 'https://ichef-1.bbci.co.uk/news/660/media/images/80896000/jpg/_80896768_red-onion-think624.jpg',
+        image: 'onions.jpg',
         code: 'O'
       },
       {
         name: 'Italian Sausage',
-        image: 'https://d39hcmrh8xztgk.cloudfront.net/product_product-large_phpPTgCX3.jpg',
+        image: 'italian_s.jpg',
         code: 'S'
       }];
   } else if (calContext === 'peopleCount') {

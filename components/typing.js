@@ -35,47 +35,6 @@ class Typing extends Component {
   }
 
   mainBounce() {
-
-    
-    // this.moveUp1();
-    // setTimeout(() => {
-    //   setInterval(()=>{
-    //     this.moveUp2();
-    //   }, 100);
-    // }, 150);
-
-    // setTimeout(() => {
-    //   setInterval(() => {
-    //     this.moveDown1();
-    //   }, 100);
-    // }, 150);
-
-    // setTimeout(() => {
-    //   setInterval(() => {
-    //     this.moveUp3();
-    //   }, 100);
-    // }, 300);
-
-    // setTimeout(() => {
-    //   setInterval(() => {
-    //     this.moveDown2();
-    //   }, 100);
-    // }, 300);
-
-    // setTimeout(() => {
-    //   setInterval(() => {
-    //     this.moveDown3();
-    //   }, 100);
-    // }, 450);
-
-    // setTimeout(() => {
-    //   setInterval(() => {
-    //     this.moveUp1();
-    //   }, 100);
-    // }, 450);
-
-
-    
     setInterval(() => {
       this.moveUp1();
     }, 100);
@@ -99,37 +58,6 @@ class Typing extends Component {
     setInterval(() => {
         this.moveDown3();
     }, 550);
-
-
-
-    // setTimeout(() => {
-    //   this.moveUp1();
-    // }, 450);
-
-    // console.log('second moveup1');
-
-    // setTimeout(() => {
-    //   this.moveUp2();
-    // }, 600);
-
-    // console.log('second moveup2');
-
-    // setTimeout(() => {
-    //   this.moveDown1();
-    // }, 600);
-
-    // setTimeout(() => {
-    //   this.moveUp3();
-    // }, 750);
-
-    // setTimeout(() => {
-    //   this.moveDown2();
-    // }, 750);
-
-    // setTimeout(() => {
-    //   this.moveDown3();
-    // }, 900);
-    
   }
 
   moveUp1() {

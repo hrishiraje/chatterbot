@@ -44,7 +44,7 @@ class ToppingListEntry extends React.Component {
           {this.props.topping.name}
         </Text>
         <Image                         
-          source={{ uri: this.props.topping.image }}
+          source={asset(this.props.topping.image)}
           style={[styles.toppingImage, {borderColor: this.state.selected === true ? 'red' : 'black'}]}
         />
       </VrButton>
