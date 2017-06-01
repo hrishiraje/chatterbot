@@ -5,6 +5,7 @@ import axios from 'axios';
 import BouncingText from './components/bouncingText';
 import RobotModel from './components/robotModel';
 import TopplingList from './components/toppingList';
+import Typing from './components/typing';
 
 
 const styles = StyleSheet.create({
@@ -43,7 +44,8 @@ class Basics extends Component {
       context: '',
       pizzaCode: '',
       toppings: [],
-      playSound: true
+      playSound: true,
+      robotTyping: false
     }
   }
 
@@ -66,27 +68,48 @@ class Basics extends Component {
       });
     } else if (e.nativeEvent.inputEvent.key === 'Enter') {
       this.setState({
+        robotTyping: true
+      });
+      this.setState({
         messageText: JSON.parse(JSON.stringify(this.state.keyboardText)), keyboardText: ''}, () => {
           var modifiedMessage = this.state.messageText.replace(/\>\s/gi, '+');
           var urlMessage = '?message='+modifiedMessage+'&context='+this.state.context;
           axios.get(`/api/response${urlMessage}`).then(function(response) {
               console.log('TOPPINGS', response.data.toppings);
-              me.setState({
-                robotText: response.data.output,
-                context: response.data.nextContext,
-                playSound: !me.state.playSound
-              });
-              if (response.data.pizzaCode !== undefined) {
+              setTimeout(() => {
                 me.setState({
-                  pizzaCode: response.data.pizzaCode
+                  robotText: response.data.output,
+                  context: response.data.nextContext,
+                  playSound: !me.state.playSound,
+                  robotTyping: false
                 });
-              }
-              if (response.data.toppings !== undefined) {
-                me.setState({
-                  toppings: response.data.toppings
-                });
-              }
-          });
+                if (response.data.pizzaCode !== undefined) {
+                  me.setState({
+                    pizzaCode: response.data.pizzaCode
+                  });
+                }
+                if (response.data.toppings !== undefined) {
+                  me.setState({
+                    robotText: response.data.output,
+                    context: response.data.nextContext,
+                    robotTyping: false
+                  });
+                }
+                if (response.data.pizzaCode !== undefined) {
+                  me.setState({
+                    pizzaCode: response.data.pizzaCode,
+                    robotTyping: false
+                  });
+                }
+                if (response.data.toppings !== undefined) {
+                  me.setState({
+                    toppings: response.data.toppings,
+                    robotTyping: false
+                  });
+                }
+              }, 2500);
+            }
+          );
       });
     } else {
       if(e.nativeEvent.inputEvent.key !== 'Shift')
@@ -120,12 +143,12 @@ class Basics extends Component {
     return (
       <View onInput={this.handleInput.bind(this)}>
         <Pano source={asset('sky_platform.jpg')}></Pano>
-        <RobotModel robotText={this.state.robotText}/>
         {this.state.playSound ? 
         ( <Sound source={asset('robo.mp3')} /> )
         : (
           <Sound source={asset('robo2.mp3')} />
         )}
+        <RobotModel robotTyping={this.state.robotTyping} robotText={this.state.robotText}/>
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
           <Text style={styles.historyText}>{this.state.messageText}</Text>

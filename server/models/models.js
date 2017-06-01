@@ -19,8 +19,8 @@ module.exports = {
     },
     placeOrder: function(order, cb) {
       // place API logic for dominoes order here
-      orderPizza(order, function(error, data){
-        if(error){
+      orderPizza(order, function(error, data) {
+        if (error) {
           cb(error, null);
         } else {
           cb(null, data);

@@ -2,7 +2,7 @@
 # Material Count: 2
 
 newmtl Material.001
-map_kd metal_texture.jpg
+map_kd mt.jpg
 Ns 96.078431
 Ka 0.000000 0.000000 0.000000
 Kd 0.000000 0.000000 0.000000

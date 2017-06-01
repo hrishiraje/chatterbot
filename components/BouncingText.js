@@ -10,6 +10,8 @@ const styles = StyleSheet.create({
     alignItems: 'stretch'
   },
   text: {
+    border: 0.5,
+    borderRadius: 0.05, 
     fontSize: 0.1,
     color: 'white',
     textAlign: 'center',
@@ -29,7 +31,7 @@ class BouncingText extends React.Component {
   componentDidMount() {
     Animated.spring(this.state.bounceValue, {
       toValue: 2,
-      friction: 0.5,
+      friction: 1,
       tension: 4,
     }).start();
   }
