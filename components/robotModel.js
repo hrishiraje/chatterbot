@@ -20,16 +20,18 @@ class RobotModel extends Component {
   }
 
   componentDidMount() {
-    Animated.sequence([
-      Animated.timing(this._animatedValue, {
-        toValue: -.3,
-        duration: 1000
-      }),
-      Animated.timing(this._animatedValue, {
-        toValue: -.7,
-        duration: 1000
-      })
-    ]).start();
+    setInterval(() => {
+      Animated.sequence([
+        Animated.timing(this._animatedValue, {
+          toValue: -.3,
+          duration: 1000
+        }),
+        Animated.timing(this._animatedValue, {
+          toValue: -.7,
+          duration: 1000
+        })
+      ]).start();
+    }, 2000)
   }
 
   render() {
@@ -46,7 +48,6 @@ class RobotModel extends Component {
           <BouncingText theText={this.props.robotText} /> 
         }
         <AnimatedModel style={{ transform: [{ translate: [1, -.3, -3] }, { scale: 0.7 }, {rotate: rotate}, {translateY: this._animatedValue}] }} source={{ obj: asset('br1.obj'), mtl: asset('br1.mtl')}}/>
-        {/*<Model style={{ transform: [{ translate: [1, -0.3, -3] }, { scale: 0.7 }] }} source={{ obj: asset('br1.obj'), mtl: asset('br1.mtl')}}/>*/}
       </View>
     );
   }
