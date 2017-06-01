@@ -17,6 +17,7 @@ class RobotModel extends Component {
   
   componentWillMount() {
     this._animatedValue = new Animated.Value(-.7);
+    this.xValue = new Animated.Value(-1000);
   }
 
   componentDidMount() {
@@ -32,6 +33,10 @@ class RobotModel extends Component {
         })
       ]).start();
     }, 2000)
+    Animated.timing(this.xValue, {
+      toValue: -3,
+      duration: 2000
+    }).start();
   }
 
   render() {
@@ -47,7 +52,7 @@ class RobotModel extends Component {
         :
           <BouncingText theText={this.props.robotText} /> 
         }
-        <AnimatedModel style={{ transform: [{ translate: [1, -.3, -3] }, { scale: 0.7 }, {rotate: rotate}, {translateY: this._animatedValue}] }} source={{ obj: asset('br1.obj'), mtl: asset('br1.mtl')}}/>
+        <AnimatedModel style={{ transform: [{ translate: [1, -.3, -3] }, { scale: 0.7 }, {rotate: rotate}, {translateY: this._animatedValue}, {translateZ: this.xValue}] }} source={{ obj: asset('br1.obj'), mtl: asset('br1.mtl')}}/>
       </View>
     );
   }
