@@ -5,6 +5,7 @@ import axios from 'axios';
 import BouncingText from './components/bouncingText';
 import RobotModel from './components/robotModel';
 import TopplingList from './components/toppingList';
+import Typing from './components/typing';
 
 
 const styles = StyleSheet.create({
@@ -43,7 +44,8 @@ class Basics extends Component {
       context: '',
       pizzaCode: '',
       toppings: [],
-      playSound: true
+      playSound: true,
+      robotTyping: false
     }
   }
 
@@ -57,12 +59,6 @@ class Basics extends Component {
     });
   }
 
-  componentDidUpdate() {
-    this.setState({
-      robotText : asset('typing.gif')
-    })
-  }
-
   handleInput(e){
     var me = this;
     if (e.nativeEvent.inputEvent.eventType === 'keyup')
@@ -71,6 +67,9 @@ class Basics extends Component {
         keyboardText: this.state.keyboardText.substring(0,this.state.keyboardText.length - 1)
       });
     } else if (e.nativeEvent.inputEvent.key === 'Enter') {
+      this.setState({
+        robotTyping: true
+      });
       this.setState({
         messageText: JSON.parse(JSON.stringify(this.state.keyboardText)), keyboardText: ''}, () => {
           var modifiedMessage = this.state.messageText.replace(/\>\s/gi, '+');
@@ -88,9 +87,25 @@ class Basics extends Component {
                 });
               }
               if (response.data.toppings !== undefined) {
-                me.setState({
-                  toppings: response.data.toppings
-                });
+                setTimeout(() => {
+                  me.setState({
+                    robotText: response.data.output,
+                    context: response.data.nextContext,
+                    robotTyping: false
+                  });
+                  if (response.data.pizzaCode !== undefined) {
+                    me.setState({
+                      pizzaCode: response.data.pizzaCode,
+                      robotTyping: false
+                    });
+                  }
+                  if (response.data.toppings !== undefined) {
+                    me.setState({
+                      toppings: response.data.toppings,
+                      robotTyping: false
+                    });
+                  }
+                }, 2500);
               }
           });
       });
@@ -132,6 +147,7 @@ class Basics extends Component {
         : (
           <Sound source={asset('robo2.mp3')} />
         )}
+        <RobotModel robotTyping={this.state.robotTyping} robotText={this.state.robotText}/>
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
           <Text style={styles.historyText}>{this.state.messageText}</Text>

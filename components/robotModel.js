@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, Model, asset, Animated } from 'react-vr'
+import { View, Model, asset, Animated, Image } from 'react-vr';
+
 import BouncingText from './bouncingText';
+import Typing from './typing';
 
 const AnimatedModel = Animated.createAnimatedComponent(Model);
 class RobotModel extends Component {
@@ -39,8 +41,14 @@ componentWillMount() {
 
     return (
       <View>        
-        <BouncingText theText={this.props.robotText} rotate={this.state.rotate} />
+        {/*<BouncingText theText={this.props.robotText} rotate={this.state.rotate} />*/}
+        {this.props.robotTyping === true ? 
+          <Typing />
+        :
+          <BouncingText theText={this.props.robotText} /> 
+        }
         <AnimatedModel style={{ transform: [{ translate: [1, -.3, -3] }, { scale: 0.7 }, {rotate: rotate}, {translateY: this._animatedValue}] }} source={{ obj: asset('br1.obj'), mtl: asset('br1.mtl')}}/>
+        {/*<Model style={{ transform: [{ translate: [1, -0.3, -3] }, { scale: 0.7 }] }} source={{ obj: asset('br1.obj'), mtl: asset('br1.mtl')}}/>*/}
       </View>
     );
   }
