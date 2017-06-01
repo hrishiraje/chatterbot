@@ -107,7 +107,7 @@ class Basics extends Component {
                     robotTyping: false
                   });
                 }
-              }, 2500);
+              }, 2000);
             }
           );
       });
