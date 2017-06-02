@@ -1,6 +1,6 @@
 module.exports = {
   newOrder: ['new', 'order', 'pizza'],
-  hungerLevel: ['very', 'little', 'medium', 'starving', 'ravenous'],
+  hungerLevel: ['very', 'little', 'medium', 'starving', 'ravenous', 'hella', 'kinda'],
   peopleCount: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
   totalPizzas: [],
   // pizzaType: ['small', 'medium', 'large', 'extra large', 'L', 'l', 'xl', 'x-l', 'm', 's'],
