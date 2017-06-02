@@ -136,7 +136,7 @@ class Basics extends Component {
       me.setState({
         toppings: [],
         pizzaCode: '',
-        robotText: 'Great! Your pizza should be on its way! I\'ll keep you informed with updates',
+        robotText: 'Awesome! Your pizza is on its way!',
         showTracker: true
       });
   }
