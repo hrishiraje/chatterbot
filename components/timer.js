@@ -4,8 +4,7 @@ import { Animated, StyleSheet, View, Text, asset, Image } from 'react-vr';
 var styles = StyleSheet.create( {
   container: {
     flex: 1,
-    height: 1,
-    width: 1.5,
+    width: 2,
     transform: [{ translate: [0, 4, -3] }, {rotateX : 45}],
     flexDirection: 'column',
     alignItems: 'stretch'
@@ -13,10 +12,16 @@ var styles = StyleSheet.create( {
   text: {
     border: 0.5,
     borderRadius: 0.05,
-    fontSize: 0.1,
+    fontSize: 1.0,
     color: 'red',
     textAlign: 'center',
-    backgroundColor: 'lightblue'
+  },
+  textETA: {
+    border: 0.5,
+    borderRadius: 0.05,
+    fontSize: 0.3,
+    color: 'green',
+    textAlign: 'center',
   }
 })
 
@@ -80,6 +85,7 @@ class Timer extends React.Component {
     console.log('should timer show? ', this.props.showTracker);
     return (
       <View style={styles.container}>
+        <Text style={styles.textETA}>ETA FOR PIZZA!</Text>
         <Text style={styles.text}>{timer}</Text>
       </View>
     );
