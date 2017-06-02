@@ -6,7 +6,7 @@ import BouncingText from './components/bouncingText';
 import RobotModel from './components/robotModel';
 import TopplingList from './components/toppingList';
 import Typing from './components/typing';
-
+import Timer from './components/timer';
 
 const styles = StyleSheet.create({
   currentText: {
@@ -45,7 +45,8 @@ class Basics extends Component {
       pizzaCode: '',
       toppings: [],
       playSound: true,
-      robotTyping: false
+      robotTyping: false,
+      showTracker: false
     }
   }
 
@@ -135,7 +136,8 @@ class Basics extends Component {
       me.setState({
         toppings: [],
         pizzaCode: '',
-        robotText: 'Great! Your pizza should be on its way! I\'ll keep you informed with updates'
+        robotText: 'Great! Your pizza should be on its way! I\'ll keep you informed with updates',
+        showTracker: true
       });
   }
 
@@ -154,6 +156,7 @@ class Basics extends Component {
           <Text style={styles.historyText}>{this.state.messageText}</Text>
         </View>
         <TopplingList toppings={this.state.toppings} submitOrder={this.placeOrder.bind(this)}/>
+        {this.state.showTracker === true ? <Timer showTracker={this.state.showTracker}/> : null}
       </View>
     );
   }
