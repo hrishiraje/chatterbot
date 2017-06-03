@@ -1,11 +1,14 @@
 import React from 'react';
 import { Animated, StyleSheet, View, Text, asset, Image } from 'react-vr';
 
-var styles = StyleSheet.create( {
+import BouncingText from './bouncingText';
+
+var styles = StyleSheet.create({
   container: {
     flex: 1,
-    width: 3,
-    transform: [{ translate: [0, 4, -3] }, {rotateX : 45}],
+    width: 1.5,
+    height: 1.5,
+    transform: [{ translate: [0, 2, 0] }],
     flexDirection: 'column',
     alignItems: 'stretch'
   },
@@ -50,27 +53,6 @@ class Timer extends React.Component {
     , 1000);
   }
   
-  handleStopClick() {
-    clearInterval(this.incrementer);
-    this.setState({
-      lastClearedIncrementer: this.incrementer
-    });
-  }
-  
-  handleResetClick() {
-    clearInterval(this.incrementer);
-    this.setState({
-      secondsElapsed: 0,
-      laps: []
-    });
-  }
-  
-  handleLabClick() {
-    this.setState({
-      laps: this.state.laps.concat([this.state.secondsElapsed])
-    });
-  }
-  
   render() {
 
     var formattedSeconds = (sec) => {
@@ -86,8 +68,8 @@ class Timer extends React.Component {
     console.log('should timer show? ', this.props.showTracker);
     return (
       <View style={styles.container}>
-        <Text style={styles.textETA}>ETA FOR PIZZA!</Text>
-        <Text style={styles.text}>{timer}</Text>
+        <BouncingText theText={'Alright I\'ve placed your order. Your ETA for Pizza is:'}/>
+        <BouncingText theText={timer}/>
       </View>
     );
   }
