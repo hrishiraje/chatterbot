@@ -4,7 +4,7 @@ import { Animated, StyleSheet, View, Text, asset, Image } from 'react-vr';
 var styles = StyleSheet.create( {
   container: {
     flex: 1,
-    width: 2,
+    width: 3,
     transform: [{ translate: [0, 4, -3] }, {rotateX : 45}],
     flexDirection: 'column',
     alignItems: 'stretch'
