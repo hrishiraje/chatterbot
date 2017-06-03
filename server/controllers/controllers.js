@@ -3,8 +3,8 @@
 // var myPhone = process.env.TWILIO_PHONE_NUMBER;
 var models = require('../models/models.js');
 var url = require('url');
-var client = require('twilio')(,
-  );
+// var client = require('twilio')(,
+//   );
 // phoneArray = ['+12066044935', '+16502694846', '+15595457498'];
 module.exports = {
 

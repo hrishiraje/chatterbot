@@ -13,7 +13,7 @@ module.exports.responseGen = (calContext, expectedContext, array, cb) => {
   };
   if (calContext === 'totalPizzas') {
     obj.output = responseObj[responseObj[expectedContext].next].statement;
-    obj.nextContext = responseObj[expectedContext].next;
+    obj.nextContext = responseObj[responseObj[expectedContext].next].next; //for now sending next Context as completed becuase after selecting toppings, the user will just submit the order
     obj.pizzaCode = '12SCREEN';
     obj.toppings = [
       {
@@ -118,9 +118,11 @@ var responseObj = {
     statement: 'Alright! Ready to select some toppings? Click away, and I\'ll add these to your order',
     query: 'Pick from the toppings you see around you. You can use your VR headset',
     negation: 'Awww ... I\'ll be waiting here when you want to pick up your order. Just say \'start again\' to begin',
-    next: 'finalizeOrder',
+    next: 'completed',
     prev: 'totalPizzas'
   },
+
+
 
 };
 
