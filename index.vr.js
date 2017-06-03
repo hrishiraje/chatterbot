@@ -148,7 +148,9 @@ class Basics extends Component {
       setTimeout(() => {
         me.setState({
           robotText: '',
-          showTracker: true
+          showTracker: true,
+          keyboardText: '',
+          messageText: ''
         })
       }, 5000);
   }

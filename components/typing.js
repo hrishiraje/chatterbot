@@ -6,7 +6,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundImage: asset('cloud.jpg'),
-    width: 1,
+    width: 1.5,
     flexDirection: 'row',
     alignItems: 'stretch',
     transform: [
@@ -17,6 +17,14 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch',
+  },
+  text: {
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    fontSize: 0.3,
+     transform: [
+      { translate: [0, -0.25, 0] }
+    ]
   }
 })
 
@@ -123,6 +131,9 @@ class Typing extends Component {
             texture={asset('f_t.png')}
           />
         </Animated.View>
+        <Text style={styles.text}>
+          hmm
+        </Text>
       </View>
     );
   }

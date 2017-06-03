@@ -64,11 +64,11 @@ class Timer extends React.Component {
     var timer = formattedSeconds(this.state.secondsElapsed);
     console.log('calculated timer ', timer);
 
-    console.log(' im getting rendered and the time is', this.state.secondsElapsed);
+    console.log('im getting rendered and the time is', this.state.secondsElapsed);
     console.log('should timer show? ', this.props.showTracker);
     return (
       <View style={styles.container}>
-        <BouncingText theText={'Alright I\'ve placed your order. Your ETA for Pizza is:'}/>
+        <BouncingText theText={'Alright I\'ve placed your order. Your pizza will arive in:'}/>
         <BouncingText theText={timer}/>
       </View>
     );
