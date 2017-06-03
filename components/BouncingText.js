@@ -33,11 +33,11 @@ class BouncingText extends React.Component {
     
     if(this.state.key === true){
     this.setState({key: false});
-    setTimeout(()=>{Animated.spring(this.state.bounceValue, {
+    Animated.spring(this.state.bounceValue, {
       toValue: 2,
       friction: 1,
       tension: 4,
-    }).start()}, 2500)
+    }).start()
     
   } 
   else if(this.state.key === false){
