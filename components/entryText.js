@@ -27,11 +27,6 @@ class EntryText extends Component {
       key: true
     };
   }
-  
-  componentDidMount() {
-    
-  }
-
   render() {
     if(this.props.entryText.length > 0){
       Animated.spring(this.state.bounceValue, {
