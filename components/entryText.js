@@ -29,14 +29,17 @@ class EntryText extends Component {
   }
   
   componentDidMount() {
-    Animated.spring(this.state.bounceValue, {
+    
+  }
+
+  render() {
+    if(this.props.entryText.length > 0){
+      Animated.spring(this.state.bounceValue, {
       toValue: 2,
       friction: 1,
       tension: 4,
     }).start();
-  }
-
-  render() {
+    }
     return (
       <View style={styles.container}>
         <Animated.Text style={[styles.text, { transform: [{ scale: this.state.bounceValue }] }]}>
