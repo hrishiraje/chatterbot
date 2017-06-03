@@ -53,10 +53,10 @@ class Basics extends Component {
   componentDidMount() {
     var me = this;
     axios.get('/api/startup').then(function(response) {
-      me.setState({
+      setTimeout(()=>me.setState({
         robotText: response.data.text,
         context: response.data.nextContext,
-      });
+      }), 2500);
     });
   }
 
