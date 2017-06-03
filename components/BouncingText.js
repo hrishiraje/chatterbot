@@ -25,15 +25,29 @@ class BouncingText extends React.Component {
     super(props);
     this.state = {
       bounceValue: new Animated.Value(0),
+      key: true
     };
   }
 
   componentDidMount() {
+    
+    if(this.state.key === true){
+    this.setState({key: false});
     Animated.spring(this.state.bounceValue, {
       toValue: 2,
       friction: 1,
       tension: 4,
-    }).start();
+    }).start()
+    
+  } 
+  else if(this.state.key === false){
+    console.log("WOO");
+      Animated.spring(this.state.bounceValue, {
+      toValue: 2,
+      friction: 1,
+      tension: 4,
+    }).start()
+    }
   }
 
   render() {

@@ -7,6 +7,7 @@ import RobotModel from './components/robotModel';
 import TopplingList from './components/toppingList';
 import Typing from './components/typing';
 import Timer from './components/timer';
+import EntryText from './components/entryText';
 
 const styles = StyleSheet.create({
   currentText: {
@@ -39,6 +40,7 @@ class Basics extends Component {
     this.state = {
       fontSize: 0.1,
       robotText: '',
+      entryText: '',
       keyboardText: '',
       messageText: '',
       context: '',
@@ -46,17 +48,18 @@ class Basics extends Component {
       toppings: [],
       playSound: true,
       robotTyping: false,
-      showTracker: false
+      showTracker: false,
+      entry: true
     }
   }
 
   componentDidMount() {
     var me = this;
     axios.get('/api/startup').then(function(response) {
-      me.setState({
-        robotText: response.data.text,
+      setTimeout(()=>me.setState({
+        entryText: response.data.text,
         context: response.data.nextContext,
-      });
+      }), 2500);
     });
   }
 
@@ -68,6 +71,10 @@ class Basics extends Component {
         keyboardText: this.state.keyboardText.substring(0,this.state.keyboardText.length - 1)
       });
     } else if (e.nativeEvent.inputEvent.key === 'Enter') {
+      this.setState({
+        entryText: '',
+        entry: false
+      })
       this.setState({
         robotTyping: true
       });
@@ -155,7 +162,7 @@ class Basics extends Component {
         : (
           <Sound source={asset('robo2.mp3')} />
         )}
-        <RobotModel robotTyping={this.state.robotTyping} robotText={this.state.robotText}/>
+        <RobotModel robotTyping={this.state.robotTyping} robotText={this.state.robotText} entryText={this.state.entryText} entry={this.state.entry}/>
         <View>
           <Text style={styles.currentText}>{this.state.keyboardText}</Text>
           <Text style={styles.historyText}>{this.state.messageText}</Text>

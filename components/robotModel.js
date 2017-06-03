@@ -3,6 +3,7 @@ import { View, Model, asset, Animated, Image } from 'react-vr';
 
 import BouncingText from './bouncingText';
 import Typing from './typing';
+import EntryText from './entryText';
 
 var AnimatedModel = Animated.createAnimatedComponent(Model);
 
@@ -50,7 +51,13 @@ class RobotModel extends Component {
         {this.props.robotTyping === true ? 
           <Typing />
         :
-          <BouncingText theText={this.props.robotText} /> 
+        <View>
+          {this.props.entry === true ? (
+          <EntryText entryText={this.props.entryText}/>
+          ) : (
+          <BouncingText theText={this.props.robotText} />
+          )}
+          </View> 
         }
         <AnimatedModel style={{ transform: [{ translate: [1, -.3, -3] }, { scale: 0.7 }, {rotate: rotate}, {translateY: this._animatedValue}, {translateZ: this.xValue}] }} source={{ obj: asset('br1.obj'), mtl: asset('br1.mtl')}}/>
       </View>

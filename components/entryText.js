@@ -22,21 +22,23 @@ const styles = StyleSheet.create({
 class EntryText extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      bounceValue: new Animated.Value(0),
+      key: true
+    };
   }
-  
-  componentDidMount() {
-    Animated.spring(this.state.bounceValue, {
+  render() {
+    if(this.props.entryText.length > 0){
+      Animated.spring(this.state.bounceValue, {
       toValue: 2,
       friction: 1,
       tension: 4,
     }).start();
-  }
-
-  render() {
+    }
     return (
       <View style={styles.container}>
         <Animated.Text style={[styles.text, { transform: [{ scale: this.state.bounceValue }] }]}>
-          {this.props.theText}
+          {this.props.entryText}
         </Animated.Text>
       </View>
     );
