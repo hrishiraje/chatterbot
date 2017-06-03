@@ -29,8 +29,9 @@ var styles = StyleSheet.create( {
 class Timer extends React.Component {
   constructor(props) {
     super(props);
+    var time = Math.floor(Math.random()*30*60)+40*60;
     this.state = { 
-      secondsElapsed: 300, 
+      secondsElapsed: time, 
       laps: [],
       lastClearedIncrementer: null
     };
