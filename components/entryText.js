@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
 class EntryText extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      bounceValue: new Animated.Value(0),
+      key: true
+    };
   }
   
   componentDidMount() {
@@ -36,7 +40,7 @@ class EntryText extends Component {
     return (
       <View style={styles.container}>
         <Animated.Text style={[styles.text, { transform: [{ scale: this.state.bounceValue }] }]}>
-          {this.props.theText}
+          {this.props.entryText}
         </Animated.Text>
       </View>
     );
