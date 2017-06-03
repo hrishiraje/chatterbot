@@ -152,7 +152,12 @@ class Basics extends Component {
           keyboardText: '',
           messageText: ''
         })
+
+        axios.get('/api/sms').then(function(results){
+          console.log('sent text messages to people about pizza!');
+        })
       }, 5000);
+
   }
 
   render() {
